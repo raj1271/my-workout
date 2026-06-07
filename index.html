@@ -1,0 +1,2168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fitness Transformation Blueprint — Personal Plan</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,300&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0a0a0b;
+  --surface: #111114;
+  --surface2: #18181d;
+  --border: #2a2a35;
+  --accent: #e8ff47;
+  --accent2: #ff6b35;
+  --accent3: #47c8ff;
+  --text: #e8e8f0;
+  --text-muted: #7a7a90;
+  --text-dim: #4a4a60;
+  --green: #4ade80;
+  --red: #f87171;
+  --purple: #a78bfa;
+  --gold: #fbbf24;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ─── NOISE TEXTURE OVERLAY ─── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.4;
+}
+
+/* ─── SIDEBAR NAV ─── */
+#sidebar {
+  position: fixed;
+  left: 0; top: 0; bottom: 0;
+  width: 220px;
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+  overflow-y: auto;
+  z-index: 100;
+  padding: 24px 0;
+  transition: transform 0.3s;
+}
+
+#sidebar::-webkit-scrollbar { width: 3px; }
+#sidebar::-webkit-scrollbar-thumb { background: var(--border); }
+
+.sidebar-brand {
+  padding: 0 20px 20px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 16px;
+}
+.sidebar-brand .logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 22px;
+  color: var(--accent);
+  letter-spacing: 2px;
+  line-height: 1;
+}
+.sidebar-brand .sub {
+  font-size: 10px;
+  color: var(--text-muted);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+
+.nav-section-title {
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  padding: 12px 20px 6px;
+  font-weight: 500;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 20px;
+  font-size: 12px;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: all 0.15s;
+  border-left: 2px solid transparent;
+}
+.nav-link:hover, .nav-link.active {
+  color: var(--accent);
+  border-left-color: var(--accent);
+  background: rgba(232,255,71,0.04);
+}
+.nav-link .icon { font-size: 14px; width: 16px; text-align: center; }
+
+/* ─── MAIN CONTENT ─── */
+#main {
+  margin-left: 220px;
+  min-height: 100vh;
+}
+
+/* ─── HERO ─── */
+.hero {
+  background: linear-gradient(135deg, #0a0a0b 0%, #111122 50%, #0a0a0b 100%);
+  border-bottom: 1px solid var(--border);
+  padding: 60px 60px 48px;
+  position: relative;
+  overflow: hidden;
+}
+.hero::after {
+  content: 'BLUEPRINT';
+  position: absolute;
+  right: -20px; top: -10px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 140px;
+  color: rgba(232,255,71,0.03);
+  letter-spacing: 10px;
+  pointer-events: none;
+  white-space: nowrap;
+}
+.hero-badge {
+  display: inline-block;
+  background: rgba(232,255,71,0.1);
+  border: 1px solid rgba(232,255,71,0.3);
+  color: var(--accent);
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 5px 14px;
+  border-radius: 2px;
+  margin-bottom: 20px;
+  font-family: 'JetBrains Mono', monospace;
+}
+.hero h1 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(48px, 6vw, 80px);
+  letter-spacing: 3px;
+  line-height: 0.95;
+  color: #fff;
+  margin-bottom: 16px;
+}
+.hero h1 span { color: var(--accent); }
+.hero-sub {
+  font-size: 14px;
+  color: var(--text-muted);
+  max-width: 500px;
+  margin-bottom: 40px;
+}
+.hero-stats {
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+.hero-stat {}
+.hero-stat .val {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 32px;
+  color: var(--accent);
+  letter-spacing: 1px;
+  line-height: 1;
+}
+.hero-stat .lbl {
+  font-size: 11px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: 2px;
+}
+
+/* ─── SECTIONS ─── */
+.section {
+  padding: 48px 60px;
+  border-bottom: 1px solid var(--border);
+}
+.section:last-child { border-bottom: none; }
+
+.section-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  margin-bottom: 32px;
+}
+.section-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--accent);
+  background: rgba(232,255,71,0.08);
+  border: 1px solid rgba(232,255,71,0.2);
+  padding: 4px 10px;
+  border-radius: 2px;
+  margin-top: 6px;
+  white-space: nowrap;
+}
+.section-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(28px, 3vw, 40px);
+  letter-spacing: 2px;
+  color: #fff;
+  line-height: 1;
+}
+.section-desc {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-top: 6px;
+  max-width: 600px;
+}
+
+/* ─── STAT CARDS ─── */
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.stat-card {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 20px 18px;
+  position: relative;
+  overflow: hidden;
+}
+.stat-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--accent);
+}
+.stat-card.accent2::before { background: var(--accent2); }
+.stat-card.accent3::before { background: var(--accent3); }
+.stat-card.green::before { background: var(--green); }
+.stat-card.purple::before { background: var(--purple); }
+.stat-card.gold::before { background: var(--gold); }
+.stat-card .label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+.stat-card .value {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 28px;
+  letter-spacing: 1px;
+  line-height: 1;
+  color: #fff;
+}
+.stat-card .unit {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 3px;
+}
+
+/* ─── TABLES ─── */
+.table-wrap {
+  overflow-x: auto;
+  margin-bottom: 24px;
+  border-radius: 4px;
+  border: 1px solid var(--border);
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+thead tr {
+  background: var(--surface2);
+  border-bottom: 1px solid var(--border);
+}
+th {
+  padding: 12px 16px;
+  text-align: left;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--text-muted);
+  font-weight: 500;
+  white-space: nowrap;
+}
+td {
+  padding: 11px 16px;
+  border-bottom: 1px solid rgba(42,42,53,0.5);
+  color: var(--text);
+  vertical-align: top;
+}
+tr:last-child td { border-bottom: none; }
+tr:hover td { background: rgba(232,255,71,0.02); }
+.highlight { color: var(--accent); font-weight: 500; }
+.highlight2 { color: var(--accent2); }
+.highlight3 { color: var(--accent3); }
+.g { color: var(--green); }
+.r { color: var(--red); }
+.p { color: var(--purple); }
+.go { color: var(--gold); }
+.mono { font-family: 'JetBrains Mono', monospace; font-size: 12px; }
+
+/* ─── CALLOUT BOX ─── */
+.callout {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  border-radius: 4px;
+  padding: 20px 24px;
+  margin-bottom: 20px;
+  font-size: 13px;
+}
+.callout.orange { border-left-color: var(--accent2); }
+.callout.blue { border-left-color: var(--accent3); }
+.callout.green { border-left-color: var(--green); }
+.callout.red { border-left-color: var(--red); }
+.callout.purple { border-left-color: var(--purple); }
+.callout-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 16px;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+  color: var(--accent);
+}
+.callout.orange .callout-title { color: var(--accent2); }
+.callout.blue .callout-title { color: var(--accent3); }
+.callout.green .callout-title { color: var(--green); }
+.callout.red .callout-title { color: var(--red); }
+.callout.purple .callout-title { color: var(--purple); }
+.callout p { color: var(--text-muted); line-height: 1.7; }
+
+/* ─── MEAL CARD ─── */
+.meal-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+.meal-card {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.meal-card-header {
+  background: rgba(232,255,71,0.06);
+  border-bottom: 1px solid var(--border);
+  padding: 12px 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.meal-card-header.nonveg {
+  background: rgba(255,107,53,0.06);
+}
+.meal-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 16px;
+  letter-spacing: 1px;
+}
+.meal-time {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--text-muted);
+}
+.meal-card-body { padding: 14px 18px; }
+.meal-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 0;
+  border-bottom: 1px solid rgba(42,42,53,0.4);
+  font-size: 12.5px;
+}
+.meal-item:last-child { border-bottom: none; }
+.meal-macros {
+  display: flex;
+  gap: 12px;
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+}
+.macro-pill {
+  flex: 1;
+  text-align: center;
+  background: rgba(255,255,255,0.03);
+  border-radius: 3px;
+  padding: 6px 4px;
+}
+.macro-pill .mv { font-family: 'Bebas Neue', sans-serif; font-size: 18px; color: #fff; }
+.macro-pill .ml { font-size: 9px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+
+/* ─── EXERCISE CARD ─── */
+.exercise-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 24px; }
+.exercise-card {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.exercise-header {
+  display: grid;
+  grid-template-columns: 1fr auto auto auto auto;
+  gap: 12px;
+  align-items: center;
+  padding: 14px 18px;
+  cursor: pointer;
+  border-bottom: 1px solid transparent;
+  transition: background 0.15s;
+}
+.exercise-header:hover { background: rgba(255,255,255,0.02); }
+.exercise-header.open { border-bottom-color: var(--border); }
+.ex-name { font-weight: 500; font-size: 14px; }
+.ex-target { font-size: 11px; color: var(--accent); text-transform: uppercase; letter-spacing: 1px; }
+.ex-badge {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid var(--border);
+  padding: 3px 10px;
+  border-radius: 2px;
+  white-space: nowrap;
+  color: var(--text-muted);
+}
+.ex-badge.sets { color: var(--accent3); border-color: rgba(71,200,255,0.2); background: rgba(71,200,255,0.06); }
+.ex-badge.reps { color: var(--accent); border-color: rgba(232,255,71,0.2); background: rgba(232,255,71,0.06); }
+.ex-badge.rest { color: var(--accent2); border-color: rgba(255,107,53,0.2); background: rgba(255,107,53,0.06); }
+.exercise-detail {
+  display: none;
+  padding: 16px 18px;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
+  font-size: 12.5px;
+}
+.exercise-detail.open { display: grid; }
+.ex-detail-section h4 {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+.ex-detail-section p { color: var(--text); line-height: 1.6; }
+
+/* ─── TIMELINE ─── */
+.timeline { position: relative; padding-left: 40px; }
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 12px; top: 8px; bottom: 8px;
+  width: 1px;
+  background: var(--border);
+}
+.timeline-item {
+  position: relative;
+  margin-bottom: 24px;
+}
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -32px; top: 6px;
+  width: 8px; height: 8px;
+  background: var(--accent);
+  border-radius: 50%;
+  box-shadow: 0 0 8px rgba(232,255,71,0.4);
+}
+.timeline-time {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--accent);
+  margin-bottom: 4px;
+}
+.timeline-title { font-weight: 500; font-size: 14px; margin-bottom: 4px; }
+.timeline-desc { font-size: 13px; color: var(--text-muted); }
+
+/* ─── PROGRESS BARS ─── */
+.progress-item { margin-bottom: 14px; }
+.progress-header { display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 6px; }
+.progress-bar { height: 6px; background: var(--surface2); border-radius: 3px; overflow: hidden; }
+.progress-fill { height: 100%; border-radius: 3px; background: var(--accent); transition: width 1s ease; }
+
+/* ─── CHECKLIST ─── */
+.checklist { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.checklist li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 13.5px;
+  padding: 10px 16px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+}
+.checklist li .check {
+  width: 18px; height: 18px;
+  border: 2px solid var(--border);
+  border-radius: 3px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.checklist.avoid li { border-left: 2px solid var(--red); }
+.checklist.do li { border-left: 2px solid var(--green); }
+
+/* ─── BUDGET CARDS ─── */
+.budget-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+.budget-card {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 24px;
+  position: relative;
+}
+.budget-card.recommended {
+  border-color: rgba(232,255,71,0.4);
+}
+.budget-card .budget-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+.budget-card .budget-amount {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 36px;
+  color: var(--accent);
+  letter-spacing: 2px;
+  line-height: 1;
+  margin-bottom: 16px;
+}
+.budget-card .budget-amount.orange { color: var(--accent2); }
+.budget-card .budget-amount.blue { color: var(--accent3); }
+.budget-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12.5px;
+  padding: 5px 0;
+  border-bottom: 1px solid rgba(42,42,53,0.5);
+  color: var(--text-muted);
+}
+.budget-row:last-child { border-bottom: none; }
+.budget-row span:last-child { color: var(--text); font-weight: 500; }
+.recommended-badge {
+  position: absolute;
+  top: -1px; right: 16px;
+  background: var(--accent);
+  color: #000;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 0 0 4px 4px;
+}
+
+/* ─── WEEK GRID ─── */
+.week-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+  margin-bottom: 24px;
+}
+.day-card {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 14px 10px;
+  text-align: center;
+}
+.day-card.veg { border-top: 2px solid var(--green); }
+.day-card.nonveg { border-top: 2px solid var(--accent2); }
+.day-card.rest { border-top: 2px solid var(--text-dim); opacity: 0.6; }
+.day-name { font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: 1px; }
+.day-type { font-size: 9px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); margin: 3px 0 8px; }
+.day-workout { font-size: 11px; color: var(--accent); }
+.day-workout.nonveg-color { color: var(--accent2); }
+
+/* ─── CARDIO ZONE ─── */
+.zone-bar {
+  display: flex;
+  height: 40px;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+.zone-seg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #000;
+}
+
+/* ─── MONTH ROADMAP ─── */
+.roadmap-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+.month-card {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.month-header {
+  padding: 16px 20px;
+  background: rgba(232,255,71,0.06);
+  border-bottom: 1px solid var(--border);
+}
+.month-num { font-family: 'Bebas Neue', sans-serif; font-size: 40px; letter-spacing: 2px; color: var(--accent); line-height: 1; }
+.month-title { font-size: 13px; color: var(--text-muted); margin-top: 2px; }
+.month-body { padding: 16px 20px; }
+.month-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12.5px;
+  padding: 5px 0;
+  border-bottom: 1px solid rgba(42,42,53,0.4);
+}
+.month-row:last-child { border-bottom: none; }
+.month-row .key { color: var(--text-muted); }
+.month-row .val { color: var(--green); font-weight: 500; }
+
+/* ─── TAGS ─── */
+.tag {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  padding: 2px 8px;
+  border-radius: 2px;
+  border: 1px solid;
+  margin: 2px;
+}
+.tag.green { color: var(--green); border-color: rgba(74,222,128,0.3); background: rgba(74,222,128,0.06); }
+.tag.red { color: var(--red); border-color: rgba(248,113,113,0.3); background: rgba(248,113,113,0.06); }
+.tag.blue { color: var(--accent3); border-color: rgba(71,200,255,0.3); background: rgba(71,200,255,0.06); }
+.tag.yellow { color: var(--accent); border-color: rgba(232,255,71,0.3); background: rgba(232,255,71,0.06); }
+
+/* ─── FINAL SECTION ─── */
+.final-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+}
+.final-card {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 20px;
+}
+.final-card-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 18px;
+  letter-spacing: 1px;
+  color: var(--accent);
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+}
+.final-item {
+  display: flex;
+  gap: 10px;
+  font-size: 12.5px;
+  padding: 6px 0;
+  border-bottom: 1px solid rgba(42,42,53,0.3);
+  color: var(--text-muted);
+}
+.final-item:last-child { border-bottom: none; }
+.final-item .n {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 16px;
+  color: var(--accent);
+  width: 20px;
+  flex-shrink: 0;
+}
+
+/* ─── TOGGLE BUTTON ─── */
+#menu-toggle {
+  display: none;
+  position: fixed;
+  top: 16px; left: 16px;
+  z-index: 200;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 900px) {
+  #sidebar { transform: translateX(-100%); }
+  #sidebar.open { transform: translateX(0); }
+  #main { margin-left: 0; }
+  #menu-toggle { display: block; }
+  .section { padding: 40px 24px; }
+  .hero { padding: 80px 24px 40px; }
+  .week-grid { grid-template-columns: repeat(4, 1fr); }
+  .roadmap-grid { grid-template-columns: 1fr; }
+  .exercise-header { grid-template-columns: 1fr; }
+  .exercise-detail.open { grid-template-columns: 1fr; }
+}
+
+/* ─── ANIMATIONS ─── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.section { animation: fadeUp 0.4s ease both; }
+
+.divider {
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--border), transparent);
+  margin: 24px 0;
+}
+
+h3.sub-heading {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 20px;
+  letter-spacing: 1.5px;
+  color: #fff;
+  margin-bottom: 14px;
+  margin-top: 28px;
+}
+
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+@media (max-width: 700px) { .two-col { grid-template-columns: 1fr; } }
+
+p.body-text { font-size: 13.5px; color: var(--text-muted); line-height: 1.8; margin-bottom: 14px; }
+
+</style>
+</head>
+<body>
+
+<button id="menu-toggle" onclick="document.getElementById('sidebar').classList.toggle('open')">☰</button>
+
+<!-- ═══════════════════════════════════════════ SIDEBAR ═══════════════════════════════════════════ -->
+<nav id="sidebar">
+  <div class="sidebar-brand">
+    <div class="logo">FIT<span style="color:#fff">BLUE</span></div>
+    <div class="sub">Personal Blueprint</div>
+  </div>
+
+  <div class="nav-section-title">Analysis</div>
+  <a href="#body" class="nav-link"><span class="icon">📊</span> Body Analysis</a>
+  <a href="#macros" class="nav-link"><span class="icon">🥩</span> Macro Targets</a>
+  <a href="#meals" class="nav-link"><span class="icon">🍱</span> Meal Plans</a>
+  <a href="#preworkout" class="nav-link"><span class="icon">⚡</span> Pre/Post Workout</a>
+
+  <div class="nav-section-title">Training</div>
+  <a href="#warmup" class="nav-link"><span class="icon">🔥</span> Warm-Up</a>
+  <a href="#workout" class="nav-link"><span class="icon">🏋️</span> 6-Day Workout</a>
+  <a href="#cardio" class="nav-link"><span class="icon">🫀</span> Cardio Plan</a>
+  <a href="#stretching" class="nav-link"><span class="icon">🧘</span> Stretching</a>
+  <a href="#overload" class="nav-link"><span class="icon">📈</span> Progressive Overload</a>
+
+  <div class="nav-section-title">Lifestyle</div>
+  <a href="#recovery" class="nav-link"><span class="icon">😴</span> Recovery</a>
+  <a href="#wfh" class="nav-link"><span class="icon">💻</span> WFH Strategy</a>
+  <a href="#hydration" class="nav-link"><span class="icon">💧</span> Hydration</a>
+  <a href="#timetable" class="nav-link"><span class="icon">🕐</span> Daily Timetable</a>
+
+  <div class="nav-section-title">Nutrition</div>
+  <a href="#budget" class="nav-link"><span class="icon">₹</span> Budget Plans</a>
+  <a href="#shopping" class="nav-link"><span class="icon">🛒</span> Shopping List</a>
+  <a href="#protein-rank" class="nav-link"><span class="icon">🥇</span> Protein Ranking</a>
+  <a href="#indian-meals" class="nav-link"><span class="icon">🍛</span> Indian Meals</a>
+  <a href="#weekly-diet" class="nav-link"><span class="icon">📅</span> Weekly Rotation</a>
+  <a href="#beer" class="nav-link"><span class="icon">🍺</span> Beer Guide</a>
+
+  <div class="nav-section-title">Progress</div>
+  <a href="#strength" class="nav-link"><span class="icon">💪</span> Strength Goals</a>
+  <a href="#tracking" class="nav-link"><span class="icon">📝</span> Tracking System</a>
+  <a href="#roadmap" class="nav-link"><span class="icon">🗺️</span> 90-Day Roadmap</a>
+  <a href="#mistakes" class="nav-link"><span class="icon">⚠️</span> Common Mistakes</a>
+  <a href="#testosterone" class="nav-link"><span class="icon">🔬</span> Natural T-Boost</a>
+  <a href="#cardiohealth" class="nav-link"><span class="icon">❤️</span> Cardio Health</a>
+  <a href="#checklist" class="nav-link"><span class="icon">✅</span> Daily Checklist</a>
+  <a href="#final" class="nav-link"><span class="icon">🎯</span> Final Action Plan</a>
+</nav>
+
+<!-- ═══════════════════════════════════════════ MAIN ═══════════════════════════════════════════ -->
+<main id="main">
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">// Complete Fitness Transformation Blueprint</div>
+  <h1>YOUR PERSONAL<br><span>FITNESS PLAN</span></h1>
+  <p class="hero-sub">26y Male · 80.75 kg · 5'7" · Intermediate · Body Recomposition + Strength · Natural Bodybuilding Only</p>
+  <div class="hero-stats">
+    <div class="hero-stat"><div class="val">BMI<br>27.8</div><div class="lbl">Overweight Range</div></div>
+    <div class="hero-stat"><div class="val">1,920</div><div class="lbl">Target Calories/Day</div></div>
+    <div class="hero-stat"><div class="val">145g</div><div class="lbl">Protein Target/Day</div></div>
+    <div class="hero-stat"><div class="val">₹2K</div><div class="lbl">Budget/Month</div></div>
+    <div class="hero-stat"><div class="val">12 WK</div><div class="lbl">Transformation Period</div></div>
+  </div>
+</div>
+
+<!-- ═══════════════════ 1. BODY ANALYSIS ═══════════════════ -->
+<section class="section" id="body">
+  <div class="section-header">
+    <div class="section-num">01</div>
+    <div>
+      <div class="section-title">Body Analysis</div>
+      <div class="section-desc">Complete assessment of your current physique, metabolic rate, and calorie targets.</div>
+    </div>
+  </div>
+
+  <div class="stat-grid">
+    <div class="stat-card"><div class="label">Height</div><div class="value">173</div><div class="unit">cm (5'7")</div></div>
+    <div class="stat-card accent2"><div class="label">Weight</div><div class="value">80.75</div><div class="unit">kg</div></div>
+    <div class="stat-card accent3"><div class="label">BMI</div><div class="value">27.8</div><div class="unit">Overweight</div></div>
+    <div class="stat-card green"><div class="label">Healthy Weight</div><div class="value">59–79</div><div class="unit">kg range</div></div>
+    <div class="stat-card purple"><div class="label">Est. Body Fat</div><div class="value">22–26</div><div class="unit">% (intermediate)</div></div>
+    <div class="stat-card gold"><div class="label">Lean Body Mass</div><div class="value">~61</div><div class="unit">kg</div></div>
+  </div>
+
+  <div class="stat-grid">
+    <div class="stat-card"><div class="label">BMR (Mifflin-St Jeor)</div><div class="value">1,858</div><div class="unit">kcal/day</div></div>
+    <div class="stat-card accent2"><div class="label">TDEE (Sedentary×1.2)</div><div class="value">2,230</div><div class="unit">kcal/day</div></div>
+    <div class="stat-card green"><div class="label">Fat Loss Calories</div><div class="value">1,780</div><div class="unit">kcal/day (−450)</div></div>
+    <div class="stat-card accent3"><div class="label">Recomp Calories</div><div class="value">1,920</div><div class="unit">kcal/day (−300)</div></div>
+    <div class="stat-card purple"><div class="label">Muscle Gain Calories</div><div class="value">2,330</div><div class="unit">kcal/day (+100)</div></div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-title">📌 Your Recommended Target: 1,920 kcal/day</div>
+    <p>Since your goal is BODY RECOMPOSITION (lose fat + gain muscle simultaneously), a moderate deficit of ~300 kcal is ideal. At 26 with intermediate experience, your body can achieve recomposition effectively — especially in the first 3–4 months. You are <strong>~8–10 kg above optimal weight</strong>. With this plan, you should lose 3–5 kg fat while gaining 2–3 kg muscle in 3 months.</p>
+  </div>
+
+  <div class="callout blue">
+    <div class="callout-title">🧠 BMR Calculation (Mifflin-St Jeor)</div>
+    <p>BMR = (10 × 80.75) + (6.25 × 173) − (5 × 26) + 5 = 807.5 + 1081.25 − 130 + 5 = <strong>1,763.75 ≈ 1,764 kcal</strong> (base). With activity correction for gym training: TDEE adjusted to ~2,230. Note: TDEE is higher on gym days, lower on rest days. We use 1,920 as a flat average.</p>
+  </div>
+</section>
+
+<!-- ═══════════════════ 2. MACROS ═══════════════════ -->
+<section class="section" id="macros">
+  <div class="section-header">
+    <div class="section-num">02</div>
+    <div>
+      <div class="section-title">Complete Macro Calculations</div>
+      <div class="section-desc">Science-based targets for protein, carbs, fats, fiber, and water intake.</div>
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Macro</th><th>Daily Target</th><th>Calories</th><th>Per Meal (avg)</th><th>Why This Amount</th></tr></thead>
+      <tbody>
+        <tr><td class="highlight">Protein</td><td class="mono">145–155 g</td><td>580–620 kcal</td><td>~32–38 g</td><td>1.8g/kg LBM → muscle preservation + growth in deficit</td></tr>
+        <tr><td class="highlight3">Carbohydrates</td><td class="mono">210–230 g</td><td>840–920 kcal</td><td>~45–55 g</td><td>Fuel workouts, prevent muscle breakdown, brain function</td></tr>
+        <tr><td class="highlight2">Fats</td><td class="mono">48–55 g</td><td>432–495 kcal</td><td>~12–15 g</td><td>Hormone production (testosterone), fat-soluble vitamins</td></tr>
+        <tr><td class="g">Fiber</td><td class="mono">30–35 g</td><td>—</td><td>~7–8 g</td><td>Gut health, satiety, digestion, nutrient absorption</td></tr>
+        <tr><td class="go">Water</td><td class="mono">3.5–4 L</td><td>—</td><td>—</td><td>Muscle function, fat metabolism, recovery, performance</td></tr>
+        <tr><td style="color:#fff;font-weight:600">TOTAL</td><td class="mono">—</td><td style="color:var(--accent);font-weight:600">~1,920 kcal</td><td>—</td><td>Moderate deficit for recomposition</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout green">
+    <div class="callout-title">🔑 Why 145g Protein Without Whey?</div>
+    <p>At 1.8g per kg of lean body mass (61 kg LBM), you need 110–145g protein daily. Since you're in a deficit, we push to 145–155g to prevent muscle loss. This is achievable 100% naturally through eggs, soya chunks, chicken, dal, milk, curd, and paneer. No supplements needed.</p>
+  </div>
+</section>
+
+<!-- ═══════════════════ 3. MEAL PLANS ═══════════════════ -->
+<section class="section" id="meals">
+  <div class="section-header">
+    <div class="section-num">03</div>
+    <div>
+      <div class="section-title">Complete Daily Meal Plan</div>
+      <div class="section-desc">Separate vegetarian and non-vegetarian plans built around your gym schedule.</div>
+    </div>
+  </div>
+
+  <h3 class="sub-heading">🥦 Vegetarian Day (Mon, Tue, Thu) — Target: 1,920 kcal | 145g Protein</h3>
+  <div class="meal-grid">
+    <div class="meal-card">
+      <div class="meal-card-header">
+        <div><div class="meal-name">Pre-Workout Meal</div><div style="font-size:11px;color:var(--text-muted)">6:30 AM</div></div>
+        <div class="meal-time">~350 kcal</div>
+      </div>
+      <div class="meal-card-body">
+        <div class="meal-item"><span>Banana (medium)</span><span class="mono">2 pcs</span></div>
+        <div class="meal-item"><span>Boiled Eggs</span><span class="mono">3 whole</span></div>
+        <div class="meal-item"><span>Milk (full fat)</span><span class="mono">200 ml</span></div>
+        <div class="meal-macros">
+          <div class="macro-pill"><div class="mv">22g</div><div class="ml">Protein</div></div>
+          <div class="macro-pill"><div class="mv">42g</div><div class="ml">Carbs</div></div>
+          <div class="macro-pill"><div class="mv">12g</div><div class="ml">Fats</div></div>
+          <div class="macro-pill"><div class="mv">~₹18</div><div class="ml">Cost</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="meal-card">
+      <div class="meal-card-header">
+        <div><div class="meal-name">Post-Workout</div><div style="font-size:11px;color:var(--text-muted)">9:00 AM</div></div>
+        <div class="meal-time">~420 kcal</div>
+      </div>
+      <div class="meal-card-body">
+        <div class="meal-item"><span>Soya Chunks (dry weight)</span><span class="mono">75 g</span></div>
+        <div class="meal-item"><span>Oats (cooked)</span><span class="mono">80 g dry</span></div>
+        <div class="meal-item"><span>Curd</span><span class="mono">150 g</span></div>
+        <div class="meal-item"><span>Jaggery</span><span class="mono">10 g</span></div>
+        <div class="meal-macros">
+          <div class="macro-pill"><div class="mv">42g</div><div class="ml">Protein</div></div>
+          <div class="macro-pill"><div class="mv">55g</div><div class="ml">Carbs</div></div>
+          <div class="macro-pill"><div class="mv">6g</div><div class="ml">Fats</div></div>
+          <div class="macro-pill"><div class="mv">~₹22</div><div class="ml">Cost</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="meal-card">
+      <div class="meal-card-header">
+        <div><div class="meal-name">Lunch</div><div style="font-size:11px;color:var(--text-muted)">1:00 PM</div></div>
+        <div class="meal-time">~520 kcal</div>
+      </div>
+      <div class="meal-card-body">
+        <div class="meal-item"><span>Rice (cooked)</span><span class="mono">200 g</span></div>
+        <div class="meal-item"><span>Moong Dal (cooked)</span><span class="mono">150 g</span></div>
+        <div class="meal-item"><span>Paneer (cubed)</span><span class="mono">80 g</span></div>
+        <div class="meal-item"><span>Sabzi (seasonal veggies)</span><span class="mono">100 g</span></div>
+        <div class="meal-item"><span>Curd</span><span class="mono">100 g</span></div>
+        <div class="meal-macros">
+          <div class="macro-pill"><div class="mv">38g</div><div class="ml">Protein</div></div>
+          <div class="macro-pill"><div class="mv">72g</div><div class="ml">Carbs</div></div>
+          <div class="macro-pill"><div class="mv">12g</div><div class="ml">Fats</div></div>
+          <div class="macro-pill"><div class="mv">~₹28</div><div class="ml">Cost</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="meal-card">
+      <div class="meal-card-header">
+        <div><div class="meal-name">Evening Snack</div><div style="font-size:11px;color:var(--text-muted)">4:30 PM</div></div>
+        <div class="meal-time">~200 kcal</div>
+      </div>
+      <div class="meal-card-body">
+        <div class="meal-item"><span>Roasted Chana</span><span class="mono">50 g</span></div>
+        <div class="meal-item"><span>Seasonal Fruit</span><span class="mono">1 medium</span></div>
+        <div class="meal-macros">
+          <div class="macro-pill"><div class="mv">10g</div><div class="ml">Protein</div></div>
+          <div class="macro-pill"><div class="mv">28g</div><div class="ml">Carbs</div></div>
+          <div class="macro-pill"><div class="mv">4g</div><div class="ml">Fats</div></div>
+          <div class="macro-pill"><div class="mv">~₹8</div><div class="ml">Cost</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="meal-card">
+      <div class="meal-card-header">
+        <div><div class="meal-name">Dinner</div><div style="font-size:11px;color:var(--text-muted)">8:00 PM</div></div>
+        <div class="meal-time">~430 kcal</div>
+      </div>
+      <div class="meal-card-body">
+        <div class="meal-item"><span>Whole Wheat Roti</span><span class="mono">3 pcs</span></div>
+        <div class="meal-item"><span>Rajma or Chana Dal</span><span class="mono">150 g cooked</span></div>
+        <div class="meal-item"><span>Sabzi</span><span class="mono">100 g</span></div>
+        <div class="meal-item"><span>Milk before sleep</span><span class="mono">250 ml</span></div>
+        <div class="meal-macros">
+          <div class="macro-pill"><div class="mv">33g</div><div class="ml">Protein</div></div>
+          <div class="macro-pill"><div class="mv">58g</div><div class="ml">Carbs</div></div>
+          <div class="macro-pill"><div class="mv">10g</div><div class="ml">Fats</div></div>
+          <div class="macro-pill"><div class="mv">~₹20</div><div class="ml">Cost</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="meal-card" style="background:rgba(232,255,71,0.03);border-color:rgba(232,255,71,0.2)">
+      <div class="meal-card-header" style="background:rgba(232,255,71,0.08)">
+        <div><div class="meal-name" style="color:var(--accent)">VEG DAY TOTAL</div></div>
+        <div class="meal-time">~1,920 kcal</div>
+      </div>
+      <div class="meal-card-body">
+        <div class="meal-macros">
+          <div class="macro-pill"><div class="mv" style="color:var(--accent)">145g</div><div class="ml">Protein</div></div>
+          <div class="macro-pill"><div class="mv">255g</div><div class="ml">Carbs</div></div>
+          <div class="macro-pill"><div class="mv">44g</div><div class="ml">Fats</div></div>
+          <div class="macro-pill"><div class="mv" style="color:var(--accent)">~₹96</div><div class="ml">Daily Cost</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="sub-heading">🍗 Non-Vegetarian Day (Wed, Fri, Sat, Sun) — Target: 1,920 kcal | 155g Protein</h3>
+  <div class="meal-grid">
+    <div class="meal-card">
+      <div class="meal-card-header nonveg">
+        <div><div class="meal-name">Pre-Workout Meal</div><div style="font-size:11px;color:var(--text-muted)">6:30 AM</div></div>
+        <div class="meal-time">~340 kcal</div>
+      </div>
+      <div class="meal-card-body">
+        <div class="meal-item"><span>Whole Eggs</span><span class="mono">4 pcs</span></div>
+        <div class="meal-item"><span>Banana</span><span class="mono">1 large</span></div>
+        <div class="meal-item"><span>Milk</span><span class="mono">200 ml</span></div>
+        <div class="meal-macros">
+          <div class="macro-pill"><div class="mv">28g</div><div class="ml">Protein</div></div>
+          <div class="macro-pill"><div class="mv">38g</div><div class="ml">Carbs</div></div>
+          <div class="macro-pill"><div class="mv">14g</div><div class="ml">Fats</div></div>
+          <div class="macro-pill"><div class="mv">~₹22</div><div class="ml">Cost</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="meal-card">
+      <div class="meal-card-header nonveg">
+        <div><div class="meal-name">Post-Workout</div><div style="font-size:11px;color:var(--text-muted)">9:00 AM</div></div>
+        <div class="meal-time">~450 kcal</div>
+      </div>
+      <div class="meal-card-body">
+        <div class="meal-item"><span>Chicken Breast (boiled/grilled)</span><span class="mono">150 g</span></div>
+        <div class="meal-item"><span>Oats (cooked)</span><span class="mono">80 g dry</span></div>
+        <div class="meal-item"><span>Curd</span><span class="mono">150 g</span></div>
+        <div class="meal-macros">
+          <div class="macro-pill"><div class="mv">52g</div><div class="ml">Protein</div></div>
+          <div class="macro-pill"><div class="mv">52g</div><div class="ml">Carbs</div></div>
+          <div class="macro-pill"><div class="mv">8g</div><div class="ml">Fats</div></div>
+          <div class="macro-pill"><div class="mv">~₹38</div><div class="ml">Cost</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="meal-card">
+      <div class="meal-card-header nonveg">
+        <div><div class="meal-name">Lunch</div><div style="font-size:11px;color:var(--text-muted)">1:00 PM</div></div>
+        <div class="meal-time">~500 kcal</div>
+      </div>
+      <div class="meal-card-body">
+        <div class="meal-item"><span>Rice (cooked)</span><span class="mono">180 g</span></div>
+        <div class="meal-item"><span>Chicken Curry / Fish (Rohu)</span><span class="mono">150 g</span></div>
+        <div class="meal-item"><span>Dal</span><span class="mono">100 g</span></div>
+        <div class="meal-item"><span>Sabzi + Salad</span><span class="mono">100 g</span></div>
+        <div class="meal-macros">
+          <div class="macro-pill"><div class="mv">45g</div><div class="ml">Protein</div></div>
+          <div class="macro-pill"><div class="mv">62g</div><div class="ml">Carbs</div></div>
+          <div class="macro-pill"><div class="mv">12g</div><div class="ml">Fats</div></div>
+          <div class="macro-pill"><div class="mv">~₹42</div><div class="ml">Cost</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="meal-card">
+      <div class="meal-card-header nonveg">
+        <div><div class="meal-name">Evening Snack</div><div style="font-size:11px;color:var(--text-muted)">4:30 PM</div></div>
+        <div class="meal-time">~200 kcal</div>
+      </div>
+      <div class="meal-card-body">
+        <div class="meal-item"><span>Boiled Eggs</span><span class="mono">3 pcs</span></div>
+        <div class="meal-item"><span>Peanuts</span><span class="mono">30 g</span></div>
+        <div class="meal-macros">
+          <div class="macro-pill"><div class="mv">22g</div><div class="ml">Protein</div></div>
+          <div class="macro-pill"><div class="mv">6g</div><div class="ml">Carbs</div></div>
+          <div class="macro-pill"><div class="mv">12g</div><div class="ml">Fats</div></div>
+          <div class="macro-pill"><div class="mv">~₹14</div><div class="ml">Cost</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="meal-card">
+      <div class="meal-card-header nonveg">
+        <div><div class="meal-name">Dinner</div><div style="font-size:11px;color:var(--text-muted)">8:00 PM</div></div>
+        <div class="meal-time">~430 kcal</div>
+      </div>
+      <div class="meal-card-body">
+        <div class="meal-item"><span>Wheat Roti</span><span class="mono">3 pcs</span></div>
+        <div class="meal-item"><span>Egg Bhurji (4 eggs)</span><span class="mono">4 eggs</span></div>
+        <div class="meal-item"><span>Dal + Sabzi</span><span class="mono">150 g</span></div>
+        <div class="meal-item"><span>Milk before sleep</span><span class="mono">250 ml</span></div>
+        <div class="meal-macros">
+          <div class="macro-pill"><div class="mv">38g</div><div class="ml">Protein</div></div>
+          <div class="macro-pill"><div class="mv">52g</div><div class="ml">Carbs</div></div>
+          <div class="macro-pill"><div class="mv">14g</div><div class="ml">Fats</div></div>
+          <div class="macro-pill"><div class="mv">~₹28</div><div class="ml">Cost</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="meal-card" style="background:rgba(255,107,53,0.03);border-color:rgba(255,107,53,0.2)">
+      <div class="meal-card-header nonveg" style="background:rgba(255,107,53,0.08)">
+        <div><div class="meal-name" style="color:var(--accent2)">NON-VEG DAY TOTAL</div></div>
+        <div class="meal-time">~1,920 kcal</div>
+      </div>
+      <div class="meal-card-body">
+        <div class="meal-macros">
+          <div class="macro-pill"><div class="mv" style="color:var(--accent2)">185g</div><div class="ml">Protein</div></div>
+          <div class="macro-pill"><div class="mv">210g</div><div class="ml">Carbs</div></div>
+          <div class="macro-pill"><div class="mv">60g</div><div class="ml">Fats</div></div>
+          <div class="macro-pill"><div class="mv" style="color:var(--accent2)">~₹144</div><div class="ml">Daily Cost</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ 4+5. PRE/POST WORKOUT ═══════════════════ -->
+<section class="section" id="preworkout">
+  <div class="section-header">
+    <div class="section-num">04 / 05</div>
+    <div>
+      <div class="section-title">Pre & Post Workout Nutrition</div>
+      <div class="section-desc">Precise nutrient timing for maximum performance and recovery.</div>
+    </div>
+  </div>
+  <div class="two-col">
+    <div>
+      <div class="callout">
+        <div class="callout-title">⚡ Pre-Workout (6:30 AM — 30 min before gym)</div>
+        <p><strong>What:</strong> Simple + complex carbs + moderate protein + low fat<br>
+        <strong>Why:</strong> Carbs = fuel for intensity. Protein prevents catabolism.<br><br>
+        <strong>Eat:</strong> 2 bananas + 3 eggs + 200ml milk<br>
+        <strong>Avoid:</strong> High fat foods (slow digestion), raw vegetables, high fiber<br><br>
+        <strong>Hydration:</strong> 500ml water on wake-up, 300ml before leaving for gym<br>
+        <strong>Key:</strong> Eat exactly 30–45 min before training, not earlier</p>
+      </div>
+    </div>
+    <div>
+      <div class="callout orange">
+        <div class="callout-title">🔄 Post-Workout (9:00 AM — within 30 min)</div>
+        <p><strong>What:</strong> High protein + high carbs + low fat<br>
+        <strong>Why:</strong> Anabolic window — muscle glycogen replenishment + protein synthesis peak<br><br>
+        <strong>Veg:</strong> Soya chunks 75g + Oats 80g + Curd 150g<br>
+        <strong>Non-Veg:</strong> Chicken 150g + Oats 80g + Curd 150g<br><br>
+        <strong>Hydration:</strong> 500–750ml water immediately post-workout + electrolytes (pinch of salt + lemon)<br>
+        <strong>Key:</strong> Don't skip. This is the most important meal of your day.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ 6. WARM-UP ═══════════════════ -->
+<section class="section" id="warmup">
+  <div class="section-header">
+    <div class="section-num">06</div>
+    <div>
+      <div class="section-title">Daily Warm-Up Plan</div>
+      <div class="section-desc">12-minute activation routine before every workout session.</div>
+    </div>
+  </div>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Time</th><th>Activity</th><th>Duration</th><th>Purpose</th></tr></thead>
+      <tbody>
+        <tr><td class="mono">7:00</td><td>Stationary Bike — Easy Pace (60–70 RPM)</td><td class="highlight">4 min</td><td>Raise core temp, increase heart rate gradually</td></tr>
+        <tr><td class="mono">7:04</td><td>Arm Circles (forward + backward)</td><td class="highlight">30 sec each</td><td>Shoulder mobility, rotator cuff activation</td></tr>
+        <tr><td class="mono">7:05</td><td>Hip Circles + Leg Swings</td><td class="highlight">1 min</td><td>Hip flexor + glute activation</td></tr>
+        <tr><td class="mono">7:06</td><td>Cat-Cow + Thoracic Rotation</td><td class="highlight">1 min</td><td>Spine mobility, prevent back injury</td></tr>
+        <tr><td class="mono">7:07</td><td>Bodyweight Squats (slow)</td><td class="highlight">15 reps</td><td>Quad, glute, knee activation</td></tr>
+        <tr><td class="mono">7:08</td><td>Band-free Scapular Pulls + Shoulder Dislocations</td><td class="highlight">10 reps</td><td>Upper back + shoulder blade activation</td></tr>
+        <tr><td class="mono">7:09</td><td>Inchworms + Push-Up Stretch</td><td class="highlight">5 reps</td><td>Hamstring + chest + shoulder stretch</td></tr>
+        <tr><td class="mono">7:10</td><td>Jumping Jacks / High Knees</td><td class="highlight">45 sec</td><td>Full-body heart rate spike, neurological readiness</td></tr>
+        <tr><td class="mono">7:11</td><td>Elliptical — Medium Pace (building intensity)</td><td class="highlight">3 min</td><td>Cardiorespiratory prep, joint lubrication</td></tr>
+        <tr><td class="mono">7:14</td><td>2 warm-up sets with 40% 1RM of first exercise</td><td class="highlight">2 min</td><td>Neuromuscular activation for specific muscles</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="callout blue"><div class="callout-title">⚠️ Never skip warm-up</div><p>Your gym session starts at 7 AM sharp with warm-up. Working sets begin at 7:14. Skipping warm-up increases injury risk by 40% and reduces workout performance by 10–15%.</p></div>
+</section>
+
+<!-- ═══════════════════ 7. WORKOUT PLAN ═══════════════════ -->
+<section class="section" id="workout">
+  <div class="section-header">
+    <div class="section-num">07</div>
+    <div>
+      <div class="section-title">6-Day Workout Plan</div>
+      <div class="section-desc">Two muscle groups per day using only your available equipment. Expand each exercise for form cues.</div>
+    </div>
+  </div>
+
+  <div class="week-grid">
+    <div class="day-card veg">
+        <div class="day-name">MON</div>
+        <div class="day-type">Vegetarian</div>
+        <div class="day-workout">Chest + Triceps</div>
+    </div>
+
+    <div class="day-card veg">
+        <div class="day-name">TUE</div>
+        <div class="day-type">Vegetarian</div>
+        <div class="day-workout">Back + Biceps</div>
+    </div>
+
+    <div class="day-card nonveg">
+        <div class="day-name">WED</div>
+        <div class="day-type">Non-Veg</div>
+        <div class="day-workout nonveg-color">Legs + Abs</div>
+    </div>
+
+    <div class="day-card veg">
+        <div class="day-name">THU</div>
+        <div class="day-type">Vegetarian</div>
+        <div class="day-workout">Shoulders + Triceps</div>
+    </div>
+
+    <div class="day-card nonveg">
+        <div class="day-name">FRI</div>
+        <div class="day-type">Non-Veg</div>
+        <div class="day-workout nonveg-color">Back + Biceps</div>
+    </div>
+
+    <div class="day-card nonveg">
+        <div class="day-name">SAT</div>
+        <div class="day-type">Non-Veg</div>
+        <div class="day-workout nonveg-color">Chest + Shoulders</div>
+    </div>
+
+    <div class="day-card rest">
+        <div class="day-name">SUN</div>
+        <div class="day-type">Recovery</div>
+        <div class="day-workout">Walk + Mobility</div>
+    </div>
+</div>
+
+  <!-- MONDAY -->
+<h3 class="sub-heading">Monday — Chest + Triceps</h3>
+
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+<th>Exercise</th>
+<th>Sets</th>
+<th>Reps</th>
+<th>Rest</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>Barbell Bench Press</td><td>4</td><td>6-8</td><td>90s</td></tr>
+<tr><td>Incline Dumbbell Press</td><td>4</td><td>8-10</td><td>75s</td></tr>
+<tr><td>Pec Deck Fly</td><td>3</td><td>12-15</td><td>60s</td></tr>
+<tr><td>Cable Crossover</td><td>3</td><td>12-15</td><td>60s</td></tr>
+<tr><td>Parallel Bar Dips</td><td>3</td><td>10-12</td><td>75s</td></tr>
+<tr><td>Rope Pushdown</td><td>3</td><td>12-15</td><td>60s</td></tr>
+<tr><td>Overhead Tricep Extension</td><td>3</td><td>12-15</td><td>60s</td></tr>
+</tbody>
+</table>
+</div>
+
+<!-- TUESDAY -->
+<h3 class="sub-heading">Tuesday — Back + Biceps</h3>
+
+<div class="table-wrap">
+<table>
+<tbody>
+<tr><td>Lat Pulldown</td><td>4</td><td>8-10</td><td>75s</td></tr>
+<tr><td>Barbell Row</td><td>4</td><td>8</td><td>90s</td></tr>
+<tr><td>Seated Cable Row</td><td>3</td><td>10</td><td>75s</td></tr>
+<tr><td>Face Pull</td><td>3</td><td>15</td><td>45s</td></tr>
+<tr><td>Barbell Curl</td><td>3</td><td>10</td><td>60s</td></tr>
+<tr><td>Hammer Curl</td><td>3</td><td>12</td><td>60s</td></tr>
+</tbody>
+</table>
+</div>
+
+<!-- WEDNESDAY -->
+<h3 class="sub-heading">Wednesday — Legs + Abs</h3>
+
+<div class="table-wrap">
+<table>
+<tbody>
+<tr><td>Barbell Squat</td><td>4</td><td>6-8</td><td>120s</td></tr>
+<tr><td>Leg Press</td><td>4</td><td>10</td><td>90s</td></tr>
+<tr><td>Romanian Deadlift</td><td>4</td><td>8</td><td>90s</td></tr>
+<tr><td>Leg Curl</td><td>3</td><td>12</td><td>60s</td></tr>
+<tr><td>Leg Extension</td><td>3</td><td>12</td><td>60s</td></tr>
+<tr><td>Standing Calf Raise</td><td>4</td><td>15</td><td>45s</td></tr>
+<tr><td>Hanging Leg Raise</td><td>3</td><td>15</td><td>45s</td></tr>
+<tr><td>Plank</td><td>3</td><td>60 sec</td><td>45s</td></tr>
+</tbody>
+</table>
+</div>
+
+<!-- THURSDAY -->
+<h3 class="sub-heading">Thursday — Shoulders + Triceps</h3>
+
+<div class="table-wrap">
+<table>
+<tbody>
+<tr><td>Seated Dumbbell Press</td><td>4</td><td>8</td><td>75s</td></tr>
+<tr><td>Arnold Press</td><td>3</td><td>10</td><td>60s</td></tr>
+<tr><td>Lateral Raise</td><td>4</td><td>15</td><td>45s</td></tr>
+<tr><td>Rear Delt Fly</td><td>4</td><td>15</td><td>45s</td></tr>
+<tr><td>Upright Row</td><td>3</td><td>10</td><td>60s</td></tr>
+<tr><td>Skull Crushers</td><td>3</td><td>12</td><td>60s</td></tr>
+<tr><td>Rope Pushdown</td><td>3</td><td>15</td><td>60s</td></tr>
+</tbody>
+</table>
+</div>
+
+<!-- FRIDAY -->
+<h3 class="sub-heading">Friday — Back + Biceps (Thickness Focus)</h3>
+
+<div class="table-wrap">
+<table>
+<tbody>
+<tr><td>Pull-Ups</td><td>4</td><td>Failure</td><td>90s</td></tr>
+<tr><td>T-Bar Row</td><td>4</td><td>8</td><td>90s</td></tr>
+<tr><td>One Arm Dumbbell Row</td><td>3</td><td>10</td><td>75s</td></tr>
+<tr><td>Close Grip Lat Pulldown</td><td>3</td><td>12</td><td>60s</td></tr>
+<tr><td>Face Pull</td><td>3</td><td>15</td><td>45s</td></tr>
+<tr><td>EZ Bar Curl</td><td>3</td><td>10</td><td>60s</td></tr>
+<tr><td>Incline Dumbbell Curl</td><td>3</td><td>12</td><td>60s</td></tr>
+</tbody>
+</table>
+</div>
+
+<!-- SATURDAY -->
+<h3 class="sub-heading">Saturday — Chest + Shoulders</h3>
+
+<div class="table-wrap">
+<table>
+<tbody>
+<tr><td>Incline Barbell Press</td><td>4</td><td>8</td><td>75s</td></tr>
+<tr><td>Flat Dumbbell Press</td><td>3</td><td>10</td><td>75s</td></tr>
+<tr><td>Machine Chest Press</td><td>3</td><td>12</td><td>60s</td></tr>
+<tr><td>Cable Fly</td><td>3</td><td>15</td><td>60s</td></tr>
+<tr><td>Shoulder Press Machine</td><td>3</td><td>10</td><td>60s</td></tr>
+<tr><td>Lateral Raise</td><td>4</td><td>15</td><td>45s</td></tr>
+<tr><td>Rear Delt Fly</td><td>3</td><td>15</td><td>45s</td></tr>
+</tbody>
+</table>
+</div>
+
+<!-- SUNDAY -->
+<h3 class="sub-heading">Sunday — Recovery Day</h3>
+
+<div class="callout green">
+<div class="callout-title">Recovery Protocol</div>
+<p>
+✓ 45 Minute Walk<br>
+✓ Full Body Stretching<br>
+✓ Mobility Work<br>
+✓ Foam Rolling<br>
+✓ Light Cycling (Optional)<br>
+✓ 7.5-8 Hours Sleep
+</p>
+</div>
+
+<!-- ═══════════════════ 8. CARDIO ═══════════════════ -->
+<section class="section" id="cardio">
+  <div class="section-header">
+    <div class="section-num">08</div>
+    <div>
+      <div class="section-title">Cardio & Breathing Plan</div>
+      <div class="section-desc">12-week progression to fix your stamina and stop getting out of breath.</div>
+    </div>
+  </div>
+
+  <div class="callout orange">
+    <div class="callout-title">🫁 Why You Get Out of Breath Quickly</div>
+    <p>With a sedentary lifestyle + ~22–26% body fat + no recent cardio training, your VO2 Max is likely low (estimated 30–35 ml/kg/min vs the ideal 45+ for your age). Your cardiovascular system is deconditioned — your heart pushes less blood per beat (low stroke volume) and your lungs have poor gas exchange efficiency. The GOOD news: cardio fitness improves FAST. You'll notice significant improvement within 3–4 weeks.</p>
+  </div>
+
+  <h3 class="sub-heading">Heart Rate Zones</h3>
+  <div class="zone-bar">
+    <div class="zone-seg" style="width:10%;background:#6366f1;color:#fff;font-size:9px">Z1<br>&lt;50%</div>
+    <div class="zone-seg" style="width:20%;background:#22d3ee;font-size:9px">Z2<br>50–60%</div>
+    <div class="zone-seg" style="width:30%;background:#4ade80;font-size:9px">Z3<br>60–70%</div>
+    <div class="zone-seg" style="width:25%;background:#fbbf24;font-size:9px">Z4<br>70–80%</div>
+    <div class="zone-seg" style="width:15%;background:#f87171;color:#fff;font-size:9px">Z5<br>&gt;85%</div>
+  </div>
+  <p class="body-text">Your max HR ≈ 220 − 26 = <strong>194 bpm</strong>. Target training zones: Z2 (97–116 bpm) for base cardio, Z3 (116–136 bpm) for aerobic capacity, Z4 (136–155 bpm) for HIIT intervals.</p>
+
+  <h3 class="sub-heading">12-Week Cardio Progression</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Phase</th><th>Weeks</th><th>Elliptical</th><th>Stationary Bike</th><th>Frequency</th><th>Duration</th><th>Intensity</th></tr></thead>
+      <tbody>
+        <tr><td class="g">Foundation</td><td>1–2</td><td>Steady pace, Z2</td><td>Easy 60 RPM</td><td>3× week (after gym)</td><td>15 min</td><td class="highlight3">60–65% max HR</td></tr>
+        <tr><td class="g">Build 1</td><td>3–4</td><td>Steady pace, Z2–Z3</td><td>Add 2 min/week</td><td>4× week</td><td>20 min</td><td class="highlight3">65–70% max HR</td></tr>
+        <tr><td class="go">Build 2</td><td>5–6</td><td>Add 1-min intervals</td><td>75 RPM moderate</td><td>4× week</td><td>25 min</td><td class="go">70% + 2×1min Z4</td></tr>
+        <tr><td class="go">Interval</td><td>7–8</td><td>30s fast / 90s easy</td><td>Sprint 20s / rest 40s</td><td>4× week</td><td>25 min</td><td class="go">HIIT mixed</td></tr>
+        <tr><td class="highlight2">Threshold</td><td>9–10</td><td>Maintain Z3 non-stop</td><td>Tempo 20 min</td><td>5× week</td><td>30 min</td><td class="highlight2">70–75% steady</td></tr>
+        <tr><td class="highlight2">Peak</td><td>11–12</td><td>30 min Z3 continuous</td><td>Full HIIT protocol</td><td>5× week</td><td>30–35 min</td><td class="highlight2">Progressive</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 class="sub-heading">Breathing Exercises (Daily — 5–10 min)</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Technique</th><th>Method</th><th>Duration</th><th>Benefit</th><th>When</th></tr></thead>
+      <tbody>
+        <tr><td class="highlight">Diaphragmatic Breathing</td><td>Hand on belly. Inhale through nose (belly rises). Exhale slowly through mouth.</td><td>5 min</td><td>Increases lung capacity · Reduces anxiety · Better O2 exchange</td><td>Morning after wake-up</td></tr>
+        <tr><td class="highlight3">Box Breathing</td><td>Inhale 4s → Hold 4s → Exhale 4s → Hold 4s. Repeat.</td><td>4–5 min</td><td>Nervous system regulation · Breath control under exertion</td><td>Pre-workout or post-workout</td></tr>
+        <tr><td class="highlight2">Pursed-Lip Breathing</td><td>Inhale through nose 2s → Exhale through pursed lips 4s (like blowing a candle)</td><td>3–5 min</td><td>Slows breathing rate · Prevents air trapping · Improves gas exchange</td><td>When out of breath</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="callout green"><div class="callout-title">⏱️ Expected Timeline</div><p>Week 1–2: Breathing feels difficult. Week 3–4: Noticeable improvement, less breathlessness. Week 6–8: Can hold conversations during moderate cardio. Week 10–12: Significant aerobic base built. You should be able to jog at Z3 for 20+ minutes continuously.</p></div>
+</section>
+
+<!-- ═══════════════════ 9. STRETCHING ═══════════════════ -->
+<section class="section" id="stretching">
+  <div class="section-header">
+    <div class="section-num">09</div>
+    <div>
+      <div class="section-title">Post-Workout Stretching</div>
+      <div class="section-desc">10-minute cool-down protocol. Hold each stretch for the listed duration without bouncing.</div>
+    </div>
+  </div>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Stretch</th><th>Target</th><th>Duration</th><th>How To</th></tr></thead>
+      <tbody>
+        <tr><td class="highlight">Chest Doorway Stretch</td><td>Chest · Pec Major</td><td>30s × 2</td><td>Arms at 90°, lean through doorway or use cable machine frame.</td></tr>
+        <tr><td class="highlight">Cross-Body Shoulder Stretch</td><td>Rear Delt · Shoulder</td><td>30s each arm</td><td>Pull arm across chest with other hand. Don't rotate torso.</td></tr>
+        <tr><td class="highlight3">Cat-Cow + Child's Pose</td><td>Spine · Lower Back</td><td>60s total</td><td>On all fours. Arch and round spine slowly. End in child's pose 30s.</td></tr>
+        <tr><td class="highlight3">Lat Stretch (overhead)</td><td>Lats · Serratus</td><td>30s each side</td><td>Grab pull-up bar with one hand. Let body hang and lean to opposite side.</td></tr>
+        <tr><td class="highlight2">Standing Quad Stretch</td><td>Quads · Hip Flexors</td><td>30s each leg</td><td>Stand on one leg. Pull heel to glute. Hip slightly forward.</td></tr>
+        <tr><td class="highlight2">Seated Hamstring Stretch</td><td>Hamstrings</td><td>30s each leg</td><td>Sit on bench. Extend one leg. Hinge forward at hip (not back). Reach for foot.</td></tr>
+        <tr><td class="g">Pigeon Pose / Figure-4</td><td>Glutes · Hip Rotators</td><td>45s each side</td><td>Cross ankle over opposite knee while seated. Press knee down gently.</td></tr>
+        <tr><td class="g">Tricep Overhead Stretch</td><td>Triceps Long Head</td><td>30s each arm</td><td>Raise arm, bend elbow behind head. Push elbow back with other hand.</td></tr>
+        <tr><td class="go">Bicep Wall Stretch</td><td>Biceps · Forearm Flexors</td><td>30s each arm</td><td>Arm extended back against wall, palm flat. Turn body away.</td></tr>
+        <tr><td class="go">Deep Neck Flexion</td><td>Neck · Traps</td><td>30s each side</td><td>Tilt ear to shoulder. Gentle hand pressure. Don't force.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ═══════════════════ 10. PROGRESSIVE OVERLOAD ═══════════════════ -->
+<section class="section" id="overload">
+  <div class="section-header">
+    <div class="section-num">10</div>
+    <div>
+      <div class="section-title">Progressive Overload Plan</div>
+      <div class="section-desc">The #1 driver of muscle growth. Follow this system exactly.</div>
+    </div>
+  </div>
+  <div class="callout">
+    <div class="callout-title">📐 The Double Progression Method</div>
+    <p>Work within a rep range (e.g., 8–12). When you can do <strong>all sets at the TOP of the range</strong> with good form, increase weight by the smallest increment available (2.5–5 kg). Drop back to the bottom of the range. Progress again. This is slow, sustainable, proven muscle building.</p>
+  </div>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Week</th><th>Focus</th><th>Weight Increase Rule</th><th>Volume Change</th><th>Intensity</th></tr></thead>
+      <tbody>
+        <tr><td class="mono">1–2</td><td>Learn form · establish baseline weights</td><td>No change — dial in technique</td><td>3 sets each exercise</td><td class="highlight3">RPE 6–7</td></tr>
+        <tr><td class="mono">3–4</td><td>First progression attempt</td><td>+2.5kg if you hit top of rep range for all sets</td><td>3–4 sets</td><td class="highlight3">RPE 7–8</td></tr>
+        <tr><td class="mono">5–6</td><td>Build work capacity</td><td>Continue double progression</td><td>4 sets</td><td class="highlight">RPE 8</td></tr>
+        <tr><td class="mono">7–8</td><td>Intensity block</td><td>+5kg on compound lifts if form is solid</td><td>4–5 sets</td><td class="highlight">RPE 8–9</td></tr>
+        <tr><td class="mono">9–10</td><td>Peak volume week</td><td>Maintain weights — add 1 rep or 1 set</td><td>5 sets (compounds)</td><td class="highlight2">RPE 8–9</td></tr>
+        <tr><td class="mono">11</td><td>Deload week</td><td>−30% weight · 2–3 sets only</td><td>Low volume</td><td class="g">RPE 5–6</td></tr>
+        <tr><td class="mono">12</td><td>Test new PRs</td><td>Go for 1–3 rep max on key lifts</td><td>Normal</td><td class="highlight2">RPE 9–10</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="callout blue"><div class="callout-title">📔 What To Track</div><p>Log every workout in a notebook or app: Date · Exercise · Weight · Sets × Reps · RPE. Review weekly. If you're stalling on a lift for 2+ weeks, check: sleep, protein intake, technique, recovery. Don't add weight until you earn it.</p></div>
+</section>
+
+<!-- ═══════════════════ 11. RECOVERY ═══════════════════ -->
+<section class="section" id="recovery">
+  <div class="section-header">
+    <div class="section-num">11</div>
+    <div>
+      <div class="section-title">Recovery Plan</div>
+      <div class="section-desc">Recovery is where muscle is actually built. Training breaks it down. Sleep builds it back.</div>
+    </div>
+  </div>
+  <div class="two-col">
+    <div>
+      <div class="callout green">
+        <div class="callout-title">😴 Sleep Protocol</div>
+        <p><strong>Target:</strong> 7.5–8 hours (not 6 hours from midnight).<br>
+        <strong>Optimal window:</strong> 10:30 PM – 6:00 AM<br>
+        <strong>Why it matters:</strong> 90% of GH (Growth Hormone) is released during deep sleep. Poor sleep = poor recovery, higher cortisol, and more fat gain.<br><br>
+        <strong>Sleep hygiene:</strong> No screens 30 min before bed · Keep room dark and cool · 250ml milk before bed (casein protein = overnight muscle repair) · Same sleep/wake time daily including weekends</p>
+      </div>
+    </div>
+    <div>
+      <div class="callout purple">
+        <div class="callout-title">🔁 Recovery Strategies</div>
+        <p><strong>Muscle soreness (DOMS):</strong> Normal in weeks 1–3. Light movement speeds recovery.<br>
+        <strong>Active recovery (Sunday):</strong> 20-min walk + full stretching routine<br>
+        <strong>Contrast therapy:</strong> Hot shower → Cold rinse for 30 sec (free, effective)<br>
+        <strong>Deload week (Week 11):</strong> Same movements, 30% less weight, 2–3 sets. Mandatory. Do not skip.<br><br>
+        <strong>Stress:</strong> High cortisol destroys gains. 5-min box breathing daily is non-negotiable.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ 12. MISTAKES ═══════════════════ -->
+<section class="section" id="mistakes">
+  <div class="section-header">
+    <div class="section-num">12</div>
+    <div>
+      <div class="section-title">Common Mistakes to Avoid</div>
+      <div class="section-desc">The biggest progress killers for someone at your stage.</div>
+    </div>
+  </div>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Category</th><th>Mistake</th><th>Why It Hurts</th><th>Fix</th></tr></thead>
+      <tbody>
+        <tr><td class="highlight">Workout</td><td>Ego lifting (too heavy, bad form)</td><td>Injury, no muscle stimulus</td><td>Check ego. 70% 1RM max for hypertrophy</td></tr>
+        <tr><td class="highlight">Workout</td><td>Skipping warm-up</td><td>Injury, poor performance</td><td>12-min warm-up is non-negotiable</td></tr>
+        <tr><td class="highlight">Workout</td><td>No progressive overload tracking</td><td>Plateau after 4–6 weeks</td><td>Log every session. Numbers must go up.</td></tr>
+        <tr><td class="highlight">Workout</td><td>Phone scrolling between sets</td><td>Rest too long, neural focus lost</td><td>Set a timer. 60–90s rest. Put phone away.</td></tr>
+        <tr><td class="highlight2">Diet</td><td>Not hitting protein target</td><td>Muscle loss in deficit</td><td>Track food for first 2 weeks minimum</td></tr>
+        <tr><td class="highlight2">Diet</td><td>Skipping post-workout meal</td><td>Missed anabolic window</td><td>Prepare it the night before if needed</td></tr>
+        <tr><td class="highlight2">Diet</td><td>Eating too little on rest days</td><td>Stalls recovery</td><td>Eat same calories 7 days/week</td></tr>
+        <tr><td class="g">Recovery</td><td>Sleeping only 6 hours</td><td>Low GH release, high cortisol</td><td>Sleep by 10:30 PM. Non-negotiable.</td></tr>
+        <tr><td class="g">Recovery</td><td>Training through joint pain</td><td>Chronic injury</td><td>Rest, deload, or see physio</td></tr>
+        <tr><td class="highlight3">Cardio</td><td>Too much cardio in calorie deficit</td><td>Muscle loss, overtraining</td><td>Max 30 min, 4–5 days/week</td></tr>
+        <tr><td class="highlight3">Cardio</td><td>Only doing high intensity cardio</td><td>Spikes hunger, eats muscle</td><td>80% Z2, 20% Z3–Z4 (80/20 rule)</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ═══════════════════ 13. 90-DAY ROADMAP ═══════════════════ -->
+<section class="section" id="roadmap">
+  <div class="section-header">
+    <div class="section-num">13</div>
+    <div>
+      <div class="section-title">90-Day Transformation Roadmap</div>
+      <div class="section-desc">Realistic, honest expectations — no hype, no false promises.</div>
+    </div>
+  </div>
+  <div class="roadmap-grid">
+    <div class="month-card">
+      <div class="month-header">
+        <div class="month-num">01</div>
+        <div class="month-title">Foundation — "Feel the Difference"</div>
+      </div>
+      <div class="month-body">
+        <div class="month-row"><span class="key">Weight Change</span><span class="val">−1.5 to −2.5 kg</span></div>
+        <div class="month-row"><span class="key">Fat Loss</span><span class="val">−1.5 to −2 kg</span></div>
+        <div class="month-row"><span class="key">Muscle Gain</span><span class="val">+0.5–1 kg (recomp)</span></div>
+        <div class="month-row"><span class="key">Strength</span><span class="val">+10–20% on all lifts</span></div>
+        <div class="month-row"><span class="key">Stamina</span><span class="val">Noticeable improvement</span></div>
+        <div class="month-row"><span class="key">Breathlessness</span><span class="val">Reduced by 30–40%</span></div>
+        <div class="month-row"><span class="key">Energy</span><span class="val">Higher daily energy</span></div>
+      </div>
+    </div>
+    <div class="month-card">
+      <div class="month-header">
+        <div class="month-num" style="color:var(--accent2)">02</div>
+        <div class="month-title">Progress — "See the Difference"</div>
+      </div>
+      <div class="month-body">
+        <div class="month-row"><span class="key">Weight Change</span><span class="val">−1 to −2 kg more</span></div>
+        <div class="month-row"><span class="key">Fat Loss</span><span class="val">−3 to −4 kg total</span></div>
+        <div class="month-row"><span class="key">Muscle Gain</span><span class="val">+1–1.5 kg total</span></div>
+        <div class="month-row"><span class="key">Strength</span><span class="val">25–40% above start</span></div>
+        <div class="month-row"><span class="key">Stamina</span><span class="val">20+ min cardio sustained</span></div>
+        <div class="month-row"><span class="key">Waist</span><span class="val">−3 to −5 cm</span></div>
+        <div class="month-row"><span class="key">Visible</span><span class="val">Muscle definition appears</span></div>
+      </div>
+    </div>
+    <div class="month-card">
+      <div class="month-header">
+        <div class="month-num" style="color:var(--accent3)">03</div>
+        <div class="month-title">Momentum — "Show the Difference"</div>
+      </div>
+      <div class="month-body">
+        <div class="month-row"><span class="key">Total Weight Change</span><span class="val">−4 to −6 kg</span></div>
+        <div class="month-row"><span class="key">Total Fat Lost</span><span class="val">−5 to −7 kg</span></div>
+        <div class="month-row"><span class="key">Total Muscle Gained</span><span class="val">+2–3 kg</span></div>
+        <div class="month-row"><span class="key">Strength</span><span class="val">40–60% above start</span></div>
+        <div class="month-row"><span class="key">Stamina</span><span class="val">30 min Z3 non-stop</span></div>
+        <div class="month-row"><span class="key">Body Fat %</span><span class="val">Down 3–5%</span></div>
+        <div class="month-row"><span class="key">Others notice</span><span class="val">Significant visual change</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="callout orange"><div class="callout-title">⚠️ Manage Expectations</div><p>The scale may not move much — especially in Month 1 — because you're simultaneously building muscle and losing fat. Body recomposition is slower than pure fat loss but leaves you looking and feeling dramatically better. <strong>Take progress photos every 2 weeks</strong> and measure your waist. Don't obsess over the scale.</p></div>
+</section>
+
+<!-- ═══════════════════ BUDGET PLANS ═══════════════════ -->
+<section class="section" id="budget">
+  <div class="section-header">
+    <div class="section-num">14</div>
+    <div>
+      <div class="section-title">Budget Plans: ₹2K / ₹3K / ₹4K</div>
+      <div class="section-desc">Three complete nutrition tiers with honest comparison of outcomes.</div>
+    </div>
+  </div>
+  <div class="budget-grid">
+    <div class="budget-card">
+      <div class="budget-label">Budget Plan</div>
+      <div class="budget-amount">₹2,000</div>
+      <div class="budget-row"><span>Daily Protein</span><span>120–130g</span></div>
+      <div class="budget-row"><span>Protein Sources</span><span>Eggs, Soya, Dal, Milk</span></div>
+      <div class="budget-row"><span>Muscle Gain</span><span>Good (70–75%)</span></div>
+      <div class="budget-row"><span>Fat Loss</span><span>Good</span></div>
+      <div class="budget-row"><span>Recovery</span><span>Moderate</span></div>
+      <div class="budget-row"><span>Variety</span><span>Limited</span></div>
+      <div class="budget-row"><span>Daily Food Cost</span><span>~₹66/day</span></div>
+    </div>
+    <div class="budget-card recommended">
+      <div class="recommended-badge">Recommended</div>
+      <div class="budget-label">Optimal Plan</div>
+      <div class="budget-amount">₹3,000</div>
+      <div class="budget-row"><span>Daily Protein</span><span>140–155g</span></div>
+      <div class="budget-row"><span>Protein Sources</span><span>+ Chicken, Fish, Paneer</span></div>
+      <div class="budget-row"><span>Muscle Gain</span><span>Very Good (85–90%)</span></div>
+      <div class="budget-row"><span>Fat Loss</span><span>Very Good</span></div>
+      <div class="budget-row"><span>Recovery</span><span>Good</span></div>
+      <div class="budget-row"><span>Variety</span><span>Moderate</span></div>
+      <div class="budget-row"><span>Daily Food Cost</span><span>~₹100/day</span></div>
+    </div>
+    <div class="budget-card">
+      <div class="budget-label">Ideal Plan</div>
+      <div class="budget-amount blue">₹4,000</div>
+      <div class="budget-row"><span>Daily Protein</span><span>160–175g</span></div>
+      <div class="budget-row"><span>Protein Sources</span><span>+ More chicken, fish, paneer variety</span></div>
+      <div class="budget-row"><span>Muscle Gain</span><span>Optimal (95–100%)</span></div>
+      <div class="budget-row"><span>Fat Loss</span><span>Optimal</span></div>
+      <div class="budget-row"><span>Recovery</span><span>Excellent</span></div>
+      <div class="budget-row"><span>Variety</span><span>High — seasonal fruits daily</span></div>
+      <div class="budget-row"><span>Daily Food Cost</span><span>~₹133/day</span></div>
+    </div>
+  </div>
+  <div class="callout green"><div class="callout-title">💡 ₹2000 Budget is Absolutely Workable</div><p>The difference between ₹2K and ₹4K plans is roughly 20–30g protein/day and more food variety. Your muscle gain at ₹2K will be 70–75% as effective as ₹4K. The core plan — eggs, soya chunks, dal, milk, oats, rice, roti — is enough to make excellent progress. <strong>Consistency beats perfection every time.</strong></p></div>
+</section>
+
+<!-- ═══════════════════ PROTEIN RANKING ═══════════════════ -->
+<section class="section" id="protein-rank">
+  <div class="section-header">
+    <div class="section-num">15</div>
+    <div>
+      <div class="section-title">Budget Protein Optimization</div>
+      <div class="section-desc">Cheapest protein sources ranked by value — protein per rupee spent.</div>
+    </div>
+  </div>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Rank</th><th>Food</th><th>Serving</th><th>Protein</th><th>Cost/Serving</th><th>Protein per ₹1</th><th>Verdict</th></tr></thead>
+      <tbody>
+        <tr><td class="go">🥇 1</td><td class="highlight">Soya Chunks</td><td>50g (dry)</td><td>26g</td><td class="g">~₹5</td><td class="highlight">5.2g/₹1</td><td><span class="tag green">BEST VALUE</span></td></tr>
+        <tr><td class="go">🥈 2</td><td class="highlight">Eggs (whole)</td><td>3 eggs</td><td>18g</td><td class="g">~₹15</td><td class="highlight">1.2g/₹1</td><td><span class="tag green">Excellent</span></td></tr>
+        <tr><td class="go">🥉 3</td><td class="highlight3">Moong Dal (raw)</td><td>50g</td><td>12g</td><td class="g">~₹6</td><td class="highlight3">2.0g/₹1</td><td><span class="tag blue">Great</span></td></tr>
+        <tr><td>4</td><td>Milk (full fat)</td><td>250ml</td><td>8g</td><td>~₹12</td><td>0.67g/₹1</td><td><span class="tag blue">Good</span></td></tr>
+        <tr><td>5</td><td>Roasted Chana</td><td>50g</td><td>11g</td><td>~₹8</td><td>1.4g/₹1</td><td><span class="tag blue">Good</span></td></tr>
+        <tr><td>6</td><td>Curd</td><td>200g</td><td>7g</td><td>~₹14</td><td>0.5g/₹1</td><td><span class="tag blue">Good</span></td></tr>
+        <tr><td>7</td><td>Peanuts</td><td>30g</td><td>7.5g</td><td>~₹6</td><td>1.25g/₹1</td><td><span class="tag yellow">Good + Fats</span></td></tr>
+        <tr><td>8</td><td>Chicken (boneless)</td><td>100g</td><td>31g</td><td>~₹35</td><td>0.9g/₹1</td><td><span class="tag yellow">High quality protein</span></td></tr>
+        <tr><td>9</td><td>Rohu Fish</td><td>100g</td><td>18g</td><td>~₹20</td><td>0.9g/₹1</td><td><span class="tag yellow">Good omega-3</span></td></tr>
+        <tr><td>10</td><td>Paneer</td><td>100g</td><td>18g</td><td>~₹40</td><td>0.45g/₹1</td><td><span class="tag red">Expensive</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="callout"><div class="callout-title">Strategy: Soya Chunks + Eggs + Dal = 90% of your protein budget</div><p>On a ₹2000/month budget, build your protein foundation on soya chunks (75g/day), eggs (3–4/day), and dal (150g cooked/day). This gives you 95–110g protein for just ~₹35–45/day. Add milk (₹12) and curd (₹14) to hit 130g total for ~₹60/day.</p></div>
+</section>
+
+<!-- ═══════════════════ SHOPPING LIST ═══════════════════ -->
+<section class="section" id="shopping">
+  <div class="section-header">
+    <div class="section-num">16</div>
+    <div>
+      <div class="section-title">Weekly & Monthly Shopping List</div>
+      <div class="section-desc">Everything you need to buy. Quantities and estimated costs included.</div>
+    </div>
+  </div>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Category</th><th>Item</th><th>Weekly Qty</th><th>Monthly Qty</th><th>Est. Monthly Cost</th><th>Duration</th></tr></thead>
+      <tbody>
+        <tr><td class="highlight" rowspan="5">Protein</td><td>Eggs (tray)</td><td>21 eggs</td><td>84 eggs (7 trays)</td><td class="g">~₹350</td><td>Daily fresh</td></tr>
+        <tr><td>Soya Chunks</td><td>500g</td><td>2 kg</td><td class="g">~₹160</td><td>1 kg lasts 10–12 days</td></tr>
+        <tr><td>Milk (packet)</td><td>3.5 L</td><td>14 L</td><td class="g">~₹560</td><td>Daily 500ml</td></tr>
+        <tr><td>Curd (homemade from milk)</td><td>—</td><td>—</td><td class="g">Included in milk cost</td><td>Make fresh</td></tr>
+        <tr><td>Chicken (non-veg days)</td><td>400g</td><td>1.6 kg</td><td class="g">~₹380</td><td>Buy fresh 2×/week</td></tr>
+        <tr><td class="highlight3" rowspan="4">Carbs</td><td>Rice</td><td>700g</td><td>2.8 kg</td><td class="g">~₹140</td><td>Lasts 3–4 days</td></tr>
+        <tr><td>Whole Wheat Atta</td><td>500g</td><td>2 kg</td><td class="g">~₹100</td><td>Lasts 1 week</td></tr>
+        <tr><td>Oats</td><td>400g</td><td>1.6 kg</td><td class="g">~₹160</td><td>500g lasts ~10 days</td></tr>
+        <tr><td>Banana</td><td>14 pcs</td><td>~56 pcs</td><td class="g">~₹160</td><td>Buy 2× week</td></tr>
+        <tr><td class="highlight2" rowspan="3">Legumes</td><td>Moong Dal</td><td>300g</td><td>1.2 kg</td><td class="g">~₹120</td><td>500g lasts ~10 days</td></tr>
+        <tr><td>Chana Dal / Rajma</td><td>300g</td><td>1.2 kg</td><td class="g">~₹100</td><td>500g lasts ~10 days</td></tr>
+        <tr><td>Roasted Chana</td><td>200g</td><td>800g</td><td class="g">~₹80</td><td>Snack</td></tr>
+        <tr><td class="g" rowspan="3">Veggies</td><td>Seasonal Vegetables</td><td>1.5 kg mix</td><td>6 kg</td><td class="g">~₹180</td><td>Buy fresh 2–3×/week</td></tr>
+        <tr><td>Onion / Tomato / Garlic</td><td>500g</td><td>2 kg</td><td class="g">~₹60</td><td>Buy weekly</td></tr>
+        <tr><td>Green Leafy Veg</td><td>300g</td><td>1.2 kg</td><td class="g">~₹60</td><td>Buy fresh</td></tr>
+        <tr><td class="go" rowspan="2">Fats</td><td>Peanuts (roasted)</td><td>150g</td><td>600g</td><td class="g">~₹60</td><td>Snack + cooking</td></tr>
+        <tr><td>Cooking Oil (mustard/groundnut)</td><td>200ml</td><td>800ml</td><td class="g">~₹80</td><td>Minimal use</td></tr>
+        <tr><td class="p" rowspan="2">Misc</td><td>Jaggery</td><td>50g</td><td>200g</td><td class="g">~₹20</td><td>Natural sweetener</td></tr>
+        <tr><td>Spices (haldi, jeera, dhania)</td><td>—</td><td>—</td><td class="g">~₹50</td><td>Buy monthly</td></tr>
+        <tr><td style="border-top:1px solid var(--border);color:#fff;font-weight:600" colspan="4">TOTAL MONTHLY BUDGET</td><td style="color:var(--accent);font-weight:700;font-size:16px">~₹2,020</td><td></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ═══════════════════ INDIAN MEALS ═══════════════════ -->
+<section class="section" id="indian-meals">
+  <div class="section-header">
+    <div class="section-num">17</div>
+    <div>
+      <div class="section-title">20+ Indian Meal Options</div>
+      <div class="section-desc">Affordable, high-protein Indian meals for variety in your weekly rotation.</div>
+    </div>
+  </div>
+  <h3 class="sub-heading">🥦 Vegetarian Meals</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Meal</th><th>Cal</th><th>Protein</th><th>Carbs</th><th>Fats</th><th>Cost</th></tr></thead>
+      <tbody>
+        <tr><td>Soya Chunk Curry + 2 Roti + Curd</td><td>480</td><td class="highlight">38g</td><td>52g</td><td>12g</td><td class="g">~₹20</td></tr>
+        <tr><td>Moong Dal + Rice + Sabzi</td><td>450</td><td class="highlight">22g</td><td>78g</td><td>5g</td><td class="g">~₹18</td></tr>
+        <tr><td>Paneer Bhurji + 2 Roti</td><td>420</td><td class="highlight">28g</td><td>40g</td><td>18g</td><td class="go">~₹35</td></tr>
+        <tr><td>Rajma + Rice (1 cup)</td><td>490</td><td class="highlight">20g</td><td>88g</td><td>4g</td><td class="g">~₹15</td></tr>
+        <tr><td>Oat Porridge + Banana + Milk</td><td>380</td><td class="highlight">18g</td><td>62g</td><td>8g</td><td class="g">~₹20</td></tr>
+        <tr><td>Egg Bhurji (4 eggs) + 2 Roti</td><td>450</td><td class="highlight">28g</td><td>42g</td><td>22g</td><td class="g">~₹22</td></tr>
+        <tr><td>Chana Masala + Rice</td><td>420</td><td class="highlight">18g</td><td>72g</td><td>6g</td><td class="g">~₹14</td></tr>
+        <tr><td>Methi Thepla + Curd + Chana</td><td>360</td><td class="highlight">16g</td><td>48g</td><td>10g</td><td class="g">~₹16</td></tr>
+        <tr><td>Poha + Peanuts + Curd</td><td>340</td><td class="highlight">14g</td><td>52g</td><td>10g</td><td class="g">~₹12</td></tr>
+        <tr><td>Besan Cheela (3 pcs) + Curd</td><td>380</td><td class="highlight">22g</td><td>42g</td><td>12g</td><td class="g">~₹14</td></tr>
+        <tr><td>Masoor Dal + 3 Roti + Salad</td><td>430</td><td class="highlight">20g</td><td>66g</td><td>8g</td><td class="g">~₹15</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <h3 class="sub-heading">🍗 Non-Vegetarian Meals</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Meal</th><th>Cal</th><th>Protein</th><th>Carbs</th><th>Fats</th><th>Cost</th></tr></thead>
+      <tbody>
+        <tr><td>Chicken Breast + Rice + Dal</td><td>520</td><td class="highlight2">52g</td><td>58g</td><td>8g</td><td class="go">~₹45</td></tr>
+        <tr><td>Egg Curry (4 eggs) + 3 Roti</td><td>480</td><td class="highlight2">32g</td><td>54g</td><td>20g</td><td class="g">~₹22</td></tr>
+        <tr><td>Rohu Fish Fry + Rice + Sabzi</td><td>460</td><td class="highlight2">36g</td><td>52g</td><td>12g</td><td class="go">~₹38</td></tr>
+        <tr><td>Chicken Keema + 3 Roti</td><td>500</td><td class="highlight2">44g</td><td>48g</td><td>16g</td><td class="go">~₹40</td></tr>
+        <tr><td>Boiled Egg Salad + Oats</td><td>380</td><td class="highlight2">28g</td><td>40g</td><td>14g</td><td class="g">~₹20</td></tr>
+        <tr><td>Chicken Soup + 2 Roti</td><td>350</td><td class="highlight2">38g</td><td>38g</td><td>8g</td><td class="go">~₹40</td></tr>
+        <tr><td>Omelette (4 eggs) + Toast + Milk</td><td>440</td><td class="highlight2">30g</td><td>38g</td><td>20g</td><td class="g">~₹22</td></tr>
+        <tr><td>Fish Curry + Rice</td><td>480</td><td class="highlight2">32g</td><td>62g</td><td>10g</td><td class="go">~₹36</td></tr>
+        <tr><td>Chicken Tikka (grilled) + Salad</td><td>320</td><td class="highlight2">48g</td><td>12g</td><td>10g</td><td class="go">~₹44</td></tr>
+        <tr><td>Egg + Soya Chunk Sabzi + Roti</td><td>450</td><td class="highlight2">38g</td><td>50g</td><td>12g</td><td class="g">~₹20</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ═══════════════════ WEEKLY DIET ROTATION ═══════════════════ -->
+<section class="section" id="weekly-diet">
+  <div class="section-header">
+    <div class="section-num">18</div>
+    <div>
+      <div class="section-title">Weekly Diet Rotation</div>
+      <div class="section-desc">Full Monday–Sunday meal schedule respecting your veg/non-veg days.</div>
+    </div>
+  </div>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Day</th><th>Type</th><th>Pre/Post Workout</th><th>Lunch</th><th>Snack</th><th>Dinner</th><th>~Protein</th></tr></thead>
+      <tbody>
+        <tr><td class="g">Monday</td><td><span class="tag green">VEG</span></td><td>Banana + Eggs / Soya Chunks + Oats</td><td>Moong Dal + Rice + Paneer</td><td>Roasted Chana + Fruit</td><td>Rajma + Roti + Milk</td><td class="highlight">145g</td></tr>
+        <tr><td class="g">Tuesday</td><td><span class="tag green">VEG</span></td><td>Banana + Eggs / Besan Cheela + Curd</td><td>Soya Chunk Curry + Rice</td><td>Peanuts + Banana</td><td>Moong Dal + 3 Roti + Milk</td><td class="highlight">142g</td></tr>
+        <tr><td class="highlight2">Wednesday</td><td><span class="tag red">NON-VEG</span></td><td>4 Eggs + Banana / Chicken + Oats</td><td>Chicken + Rice + Dal</td><td>3 Boiled Eggs + Peanuts</td><td>Egg Bhurji + Roti + Milk</td><td class="highlight2">165g</td></tr>
+        <tr><td class="g">Thursday</td><td><span class="tag green">VEG</span></td><td>Banana + Eggs / Soya + Oats + Curd</td><td>Chana Dal + Rice + Sabzi</td><td>Roasted Chana + Curd</td><td>Paneer Sabzi + 3 Roti + Milk</td><td class="highlight">148g</td></tr>
+        <tr><td class="highlight2">Friday</td><td><span class="tag red">NON-VEG</span></td><td>4 Eggs / Chicken + Oats + Curd</td><td>Fish (Rohu) + Rice + Dal</td><td>2 Eggs + Peanuts</td><td>Chicken Keema + Roti + Milk</td><td class="highlight2">170g</td></tr>
+        <tr><td class="highlight2">Saturday</td><td><span class="tag red">NON-VEG</span></td><td>4 Eggs / Chicken + Oats + Curd</td><td>Chicken Curry + Rice</td><td>3 Eggs + Fruit</td><td>Egg Curry + Roti + Milk</td><td class="highlight2">168g</td></tr>
+        <tr><td class="highlight2">Sunday</td><td><span class="tag red">NON-VEG</span></td><td>REST DAY — Normal Breakfast</td><td>Fish / Chicken + Rice</td><td>Peanuts + Fruit</td><td>Omelette + Dal + Roti + Milk</td><td class="highlight2">155g</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ═══════════════════ BEER GUIDE ═══════════════════ -->
+<section class="section" id="beer">
+  <div class="section-header">
+    <div class="section-num">19</div>
+    <div>
+      <div class="section-title">Beer Guide: Fitting It In Without Ruining Progress</div>
+      <div class="section-desc">Honest science-based breakdown of how alcohol affects your goals.</div>
+    </div>
+  </div>
+  <div class="callout red">
+    <div class="callout-title">🍺 How Beer Affects Muscle Gain</div>
+    <p><strong>Testosterone suppression:</strong> Alcohol reduces testosterone production for 12–24 hours post-consumption — the anabolic hormone you need most. Even moderate amounts suppress protein synthesis by ~15–20% for up to 8 hours. <strong>One beer session per week has minimal long-term impact</strong> if you plan it correctly.</p>
+  </div>
+  <div class="callout orange">
+    <div class="callout-title">🍺 How Beer Affects Fat Loss</div>
+    <p><strong>Alcohol = empty calories:</strong> 1 bottle (650ml) beer ≈ 220–280 kcal. Alcohol is prioritized as fuel by your liver, which pauses fat oxidation for 1–3 hours. It also increases appetite and reduces inhibitions around food choices. On a 1,920 kcal target, 2 beers = ~500 kcal — 26% of your entire daily allowance.</p>
+  </div>
+  <div class="callout green">
+    <div class="callout-title">✅ How to Fit Beer Without Ruining Progress</div>
+    <p><strong>Best day:</strong> Saturday or Sunday (furthest from most important workouts)<br>
+    <strong>Before drinking:</strong> Eat a high-protein meal first (chicken + roti). Slows absorption.<br>
+    <strong>During:</strong> Limit to 1–2 standard drinks (330ml bottles). Drink 1 glass water per beer.<br>
+    <strong>After:</strong> Eat 2 boiled eggs + roti before sleeping (protein before bed counters anti-anabolic effect)<br>
+    <strong>Next morning:</strong> High-protein breakfast. Continue plan as normal.<br>
+    <strong>Calorie compensation:</strong> On beer day, reduce lunch carbs by 50–80g to make room<br><br>
+    <strong>Verdict:</strong> 1 session/week of 1–2 beers will slow progress by approximately 5%. It will NOT destroy your results if everything else is consistent. Social life matters for mental health too.</p>
+  </div>
+</section>
+
+<!-- ═══════════════════ HYDRATION ═══════════════════ -->
+<section class="section" id="hydration">
+  <div class="section-header">
+    <div class="section-num">20</div>
+    <div>
+      <div class="section-title">Daily Hydration Schedule</div>
+      <div class="section-desc">Total target: 3.5–4 litres/day. Track with a 1L bottle (refill 3–4 times).</div>
+    </div>
+  </div>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Time</th><th>Water Amount</th><th>Why</th></tr></thead>
+      <tbody>
+        <tr><td class="mono">6:00 AM — Wake Up</td><td class="highlight">500 ml</td><td>Rehydrate after 6-hour sleep fast. Kickstarts metabolism and digestion.</td></tr>
+        <tr><td class="mono">6:30 AM — Pre-workout meal</td><td class="highlight3">200 ml</td><td>Aid digestion of pre-workout meal</td></tr>
+        <tr><td class="mono">6:50 AM — Walk to gym</td><td class="highlight3">200 ml</td><td>Pre-hydrate before first set</td></tr>
+        <tr><td class="mono">7:00–9:00 AM — Workout</td><td class="highlight2">600–800 ml</td><td>Sip every 15–20 min. Sweat replacement. Performance drops with 2% dehydration.</td></tr>
+        <tr><td class="mono">9:00 AM — Post-workout</td><td class="highlight">400–500 ml</td><td>Rehydrate + electrolyte replacement (pinch of salt + lemon)</td></tr>
+        <tr><td class="mono">9:45 AM–1:00 PM — Work</td><td class="g">600–700 ml</td><td>Sip steadily. Mental performance, digestion, prevents hunger confusion</td></tr>
+        <tr><td class="mono">1:00 PM — Lunch</td><td class="g">300 ml</td><td>Drink before/during lunch, not after (aids digestion)</td></tr>
+        <tr><td class="mono">1:00–6:00 PM — Work</td><td class="g">500–600 ml</td><td>Steady sipping. Set a reminder every 30 min if needed.</td></tr>
+        <tr><td class="mono">6:00–8:00 PM — Evening</td><td class="go">300–400 ml</td><td>Hydration for recovery from workout + activity</td></tr>
+        <tr><td class="mono">8:00 PM — Dinner</td><td class="go">200 ml</td><td>With / before meal</td></tr>
+        <tr><td class="mono">10:00–11:00 PM — Before Sleep</td><td class="p">150–200 ml</td><td>Small amount only — prevents night waking for bathroom</td></tr>
+        <tr><td style="color:#fff;font-weight:600">TOTAL</td><td style="color:var(--accent);font-weight:700">3.7–4.2 L</td><td>Adjust +500ml if summer or sweating heavily</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ═══════════════════ WFH STRATEGY ═══════════════════ -->
+<section class="section" id="wfh">
+  <div class="section-header">
+    <div class="section-num">21</div>
+    <div>
+      <div class="section-title">Work-From-Home Fitness Strategy</div>
+      <div class="section-desc">Combat the effects of sitting 8 hours with this embedded movement system.</div>
+    </div>
+  </div>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Time</th><th>Duration</th><th>Activity</th><th>Prevents</th></tr></thead>
+      <tbody>
+        <tr><td class="mono">9:45 AM — Work Starts</td><td>—</td><td>Sit with lumbar support. Monitor at eye level. Wrists neutral.</td><td>Posture baseline</td></tr>
+        <tr><td class="mono">10:30 AM — Break 1</td><td>10 min</td><td>Stand up. 10 shoulder rolls + 10 neck tilts each side + 10 hip circles. Walk to kitchen for water.</td><td>Neck pain · Shoulder tension</td></tr>
+        <tr><td class="mono">11:15 AM</td><td>2 min</td><td>Get up for water. Take the long route. 20 calf raises at kitchen counter.</td><td>Blood pooling in legs</td></tr>
+        <tr><td class="mono">12:00 PM — Break 2</td><td>10 min</td><td>10 standing hip flexor stretches each side + 10 glute squeezes + 5 min walk</td><td>Tight hip flexors · Glute inhibition</td></tr>
+        <tr><td class="mono">1:00 PM — Lunch Break</td><td>60 min</td><td>Eat (20 min) · 15-min walk (8,000 steps contribution) · 10-min floor stretching</td><td>Post-lunch energy crash · Weight gain</td></tr>
+        <tr><td class="mono">2:30 PM</td><td>2 min</td><td>Stand at desk if possible. 20 desk push-ups or wall push-ups.</td><td>Afternoon fatigue</td></tr>
+        <tr><td class="mono">3:30 PM — Break 3</td><td>10 min</td><td>Thoracic rotations (arms crossed, rotate left/right) × 15 · Cat-cow × 10 · Downward dog 30s</td><td>Back pain · Poor posture</td></tr>
+        <tr><td class="mono">5:00 PM</td><td>3 min</td><td>20 bodyweight squats (squat every time you get up from chair habit)</td><td>Glute weakness · Hip flexor tightness</td></tr>
+        <tr><td class="mono">6:00 PM — Work Ends</td><td>15 min</td><td>10-min post-work walk + 5-min diaphragmatic breathing</td><td>Work stress carry-over · Evening cortisol</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="callout blue"><div class="callout-title">📌 20-20-20 Rule for Eyes + Posture Check</div><p>Every 20 minutes: look 20 feet away for 20 seconds. Also do a posture check — feet flat on floor, back straight, screen at eye level. Set a phone alarm labeled "POSTURE" every 30 minutes for the first 2 weeks until it becomes habit.</p></div>
+</section>
+
+<!-- ═══════════════════ STRENGTH GOALS ═══════════════════ -->
+<section class="section" id="strength">
+  <div class="section-header">
+    <div class="section-num">22</div>
+    <div>
+      <div class="section-title">Realistic Strength Goals</div>
+      <div class="section-desc">Based on your bodyweight, experience level, and natural training potential.</div>
+    </div>
+  </div>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Lift</th><th>Current Estimate</th><th>3-Month Goal</th><th>6-Month Goal</th><th>12-Month Goal</th></tr></thead>
+      <tbody>
+        <tr><td class="highlight">Bench Press</td><td>55–65 kg</td><td class="highlight3">65–75 kg</td><td class="highlight">75–85 kg</td><td class="go">90–100 kg</td></tr>
+        <tr><td class="highlight">Leg Press</td><td>80–100 kg</td><td class="highlight3">110–130 kg</td><td class="highlight">140–160 kg</td><td class="go">180–200 kg</td></tr>
+        <tr><td class="highlight">Lat Pulldown</td><td>45–55 kg</td><td class="highlight3">60–70 kg</td><td class="highlight">70–80 kg</td><td class="go">85–95 kg</td></tr>
+        <tr><td class="highlight">Pull-Ups</td><td>3–6 reps</td><td class="highlight3">8–10 reps</td><td class="highlight">12–15 reps</td><td class="go">15+ reps</td></tr>
+        <tr><td class="highlight">Dips</td><td>5–8 reps</td><td class="highlight3">12–15 reps</td><td class="highlight">15–20 reps</td><td class="go">+5 kg added</td></tr>
+        <tr><td class="highlight">DB Shoulder Press</td><td>14–18 kg each</td><td class="highlight3">20–24 kg each</td><td class="highlight">26–30 kg each</td><td class="go">32–36 kg each</td></tr>
+        <tr><td class="highlight">EZ-Bar Curl</td><td>25–35 kg</td><td class="highlight3">35–42 kg</td><td class="highlight">42–50 kg</td><td class="go">52–60 kg</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="callout"><div class="callout-title">Note on Strength Standards</div><p>These are conservative estimates for natural intermediate lifters in a moderate calorie deficit. If you were in a surplus, numbers would be 15–20% higher. Focus on technique and consistency first — strength will follow. Don't compare to gym influencers using PEDs.</p></div>
+</section>
+
+<!-- ═══════════════════ TRACKING ═══════════════════ -->
+<section class="section" id="tracking">
+  <div class="section-header">
+    <div class="section-num">23</div>
+    <div>
+      <div class="section-title">Fat Loss & Muscle Gain Tracking System</div>
+      <div class="section-desc">What to measure, when to measure it, and what the numbers mean.</div>
+    </div>
+  </div>
+  <div class="two-col">
+    <div>
+      <h3 class="sub-heading">Daily Tracking</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Metric</th><th>When</th><th>How</th></tr></thead>
+          <tbody>
+            <tr><td>Body Weight</td><td>Morning, after bathroom, before food</td><td>Same scale, same time</td></tr>
+            <tr><td>Water Intake</td><td>End of day</td><td>Count 250ml glasses</td></tr>
+            <tr><td>Sleep Hours</td><td>On wake-up</td><td>Phone alarm logs or app</td></tr>
+            <tr><td>Step Count</td><td>End of day</td><td>Phone pedometer. Target: 8,000 steps</td></tr>
+            <tr><td>Workout Logged</td><td>After gym</td><td>Notebook: exercise, weight, reps</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div>
+      <h3 class="sub-heading">Weekly Tracking (Sunday morning)</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Metric</th><th>How To Measure</th></tr></thead>
+          <tbody>
+            <tr><td>Waist (navel level)</td><td>Tape measure — relaxed, not sucked in</td></tr>
+            <tr><td>Chest (fullest point)</td><td>Arms at sides, normal breath</td></tr>
+            <tr><td>Arms (flexed peak)</td><td>Both arms, average</td></tr>
+            <tr><td>Thighs (mid-thigh)</td><td>Standing relaxed</td></tr>
+            <tr><td>Progress Photo</td><td>Same lighting, same pose, same time</td></tr>
+            <tr><td>7-Day Avg Weight</td><td>Average 7 daily weights (ignore daily noise)</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ TESTOSTERONE ═══════════════════ -->
+<section class="section" id="testosterone">
+  <div class="section-header">
+    <div class="section-num">24</div>
+    <div>
+      <div class="section-title">Natural Testosterone Optimization</div>
+      <div class="section-desc">Evidence-based methods — no supplements, no BS.</div>
+    </div>
+  </div>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Factor</th><th>Action</th><th>Impact</th><th>Myth vs Fact</th></tr></thead>
+      <tbody>
+        <tr><td class="go">Sleep</td><td>7.5–8 hrs in dark, cool room. Sleep by 10:30 PM.</td><td class="g">High — 40–60% of daily T released in sleep</td><td>FACT: 5 hrs sleep = 15% lower testosterone</td></tr>
+        <tr><td class="go">Strength Training</td><td>Heavy compound lifts (bench, leg press, rows). 80% 1RM range.</td><td class="g">High — acute T spike post heavy lifting</td><td>FACT: More muscle mass = higher baseline T</td></tr>
+        <tr><td class="go">Body Fat Reduction</td><td>Lose fat (especially belly fat). Stay at 15–18% body fat.</td><td class="g">High — fat converts T to estrogen (aromatase)</td><td>FACT: Every 5% BF reduction improves T</td></tr>
+        <tr><td class="go">Sunlight</td><td>15–20 min direct sunlight (skin exposed) daily. Best 8–10 AM.</td><td class="highlight3">Moderate — Vitamin D synthesis directly tied to T</td><td>FACT: Vitamin D deficiency = lower T</td></tr>
+        <tr><td class="go">Diet Fats</td><td>Don't drop fat below 48g/day. Eat eggs, peanuts, milk daily.</td><td class="highlight3">Moderate — cholesterol is T precursor</td><td>MYTH: "Fat makes you fat." Healthy fats are essential for hormone production.</td></tr>
+        <tr><td class="go">Stress Management</td><td>Box breathing 5 min daily. Limit alcohol. Social connection.</td><td class="highlight3">Moderate — cortisol is the #1 T killer</td><td>FACT: Chronic stress = chronically suppressed T</td></tr>
+        <tr><td class="go">Zinc & Magnesium</td><td>Eat pumpkin seeds, peanuts, milk, eggs, dal — all zinc-rich</td><td class="highlight3">Moderate — both are essential for T synthesis</td><td>FACT: Zinc deficiency is common and directly lowers T</td></tr>
+        <tr><td class="r">Avoid</td><td>Alcohol > 2 drinks/session, chronic sleep deprivation, over-dieting below 1600 kcal</td><td class="r">Negative</td><td>All three acutely suppress testosterone</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ═══════════════════ CARDIO HEALTH ═══════════════════ -->
+<section class="section" id="cardiohealth">
+  <div class="section-header">
+    <div class="section-num">25</div>
+    <div>
+      <div class="section-title">Cardiovascular Health Assessment</div>
+      <div class="section-desc">Why you get breathless and how to fix it safely.</div>
+    </div>
+  </div>
+  <div class="callout orange">
+    <div class="callout-title">⚠️ Possible Causes of Breathlessness</div>
+    <p>1. <strong>Deconditioned cardiovascular system</strong> — Most likely cause. Low stroke volume, poor capillary density, reduced oxygen utilization.<br>
+    2. <strong>Excess body fat (~22–26%)</strong> — More mass = more oxygen demand for same movement.<br>
+    3. <strong>Poor breathing mechanics</strong> — Shallow chest breathing (not diaphragmatic).<br>
+    4. <strong>Low activity levels (sedentary)</strong> — Body has adapted to minimal exertion.<br>
+    5. <strong>Possible mild iron deficiency</strong> — Common in vegetarians. Iron carries oxygen in blood.</p>
+  </div>
+  <div class="callout red">
+    <div class="callout-title">🚨 See a Doctor If...</div>
+    <p>You experience breathlessness at complete rest · Chest pain or tightness during or after exercise · Heart palpitations or irregular heartbeat · Dizziness or lightheadedness during mild activity · Breathlessness that gets worse over 4 weeks despite training · Any time you're concerned — better safe than sorry. Get a basic blood panel (CBC, iron, thyroid) if breathlessness persists beyond 8 weeks of training.</p>
+  </div>
+</section>
+
+<!-- ═══════════════════ DAILY TIMETABLE ═══════════════════ -->
+<section class="section" id="timetable">
+  <div class="section-header">
+    <div class="section-num">26</div>
+    <div>
+      <div class="section-title">Complete Daily Timetable</div>
+      <div class="section-desc">Your entire day from 6 AM to 11:30 PM — structured for maximum results.</div>
+    </div>
+  </div>
+  <div class="timeline">
+    <div class="timeline-item"><div class="timeline-time">6:00 AM</div><div class="timeline-title">Wake Up + Hydration</div><div class="timeline-desc">500ml water immediately. Diaphragmatic breathing 5 min. Sunlight 5 min (step outside or open window).</div></div>
+    <div class="timeline-item"><div class="timeline-time">6:10 AM</div><div class="timeline-title">Freshen Up</div><div class="timeline-desc">Quick bathroom routine. Get dressed for gym.</div></div>
+    <div class="timeline-item"><div class="timeline-time">6:30 AM</div><div class="timeline-title">Pre-Workout Meal</div><div class="timeline-desc">2 bananas + 3 eggs + 200ml milk. Eat slowly. 200ml water.</div></div>
+    <div class="timeline-item"><div class="timeline-time">6:50 AM</div><div class="timeline-title">Travel to Gym</div><div class="timeline-desc">Walk if possible (adds steps). 200ml water en route.</div></div>
+    <div class="timeline-item"><div class="timeline-time">7:00 AM</div><div class="timeline-title">Warm-Up (12 min)</div><div class="timeline-desc">Stationary bike + dynamic stretching + activation exercises as per warm-up protocol.</div></div>
+    <div class="timeline-item"><div class="timeline-time">7:14 AM</div><div class="timeline-title">Main Workout</div><div class="timeline-desc">Follow the day's muscle group plan. Log every set. 600–800ml water during.</div></div>
+    <div class="timeline-item"><div class="timeline-time">8:30 AM</div><div class="timeline-title">Cardio (15–30 min)</div><div class="timeline-desc">Elliptical or bike as per 12-week cardio plan. Breathing exercises if needed.</div></div>
+    <div class="timeline-item"><div class="timeline-time">8:55 AM</div><div class="timeline-title">Post-Workout Stretching</div><div class="timeline-desc">10-minute full body stretching routine. Cool down completely.</div></div>
+    <div class="timeline-item"><div class="timeline-time">9:00 AM</div><div class="timeline-title">Post-Workout Meal</div><div class="timeline-desc">Soya/Chicken + Oats + Curd. 500ml water + electrolytes (salt + lemon).</div></div>
+    <div class="timeline-item"><div class="timeline-time">9:30 AM</div><div class="timeline-title">Shower + Prep</div><div class="timeline-desc">Quick shower. Contrast rinse (warm → cold 30s). Get work setup ready.</div></div>
+    <div class="timeline-item"><div class="timeline-time">9:45 AM</div><div class="timeline-title">Work Starts</div><div class="timeline-desc">Posture check. 1L water bottle on desk. Phone away from eye line.</div></div>
+    <div class="timeline-item"><div class="timeline-time">10:30 AM</div><div class="timeline-title">Break 1 (10 min)</div><div class="timeline-desc">Stand, stretch neck + shoulders. Refill water. 5 min walk.</div></div>
+    <div class="timeline-item"><div class="timeline-time">12:00 PM</div><div class="timeline-title">Break 2 (10 min)</div><div class="timeline-desc">Hip flexor stretches + 20 bodyweight squats + brief walk.</div></div>
+    <div class="timeline-item"><div class="timeline-time">1:00 PM</div><div class="timeline-title">Lunch Break</div><div class="timeline-desc">Eat in 20 min. 15-min walk (contributes to 8,000 steps). 10-min desk or floor stretch.</div></div>
+    <div class="timeline-item"><div class="timeline-time">2:00 PM</div><div class="timeline-title">Back to Work</div><div class="timeline-desc">Resume work. Steady water sipping. Posture check.</div></div>
+    <div class="timeline-item"><div class="timeline-time">3:30 PM</div><div class="timeline-title">Break 3 (10 min)</div><div class="timeline-desc">Thoracic rotations + cat-cow + downward dog. Water refill.</div></div>
+    <div class="timeline-item"><div class="timeline-time">4:30 PM</div><div class="timeline-title">Evening Snack</div><div class="timeline-desc">Roasted chana + fruit (or boiled eggs on non-veg days). Protein top-up.</div></div>
+    <div class="timeline-item"><div class="timeline-time">6:00 PM</div><div class="timeline-title">Work Ends</div><div class="timeline-desc">Log workout, food, water, steps in notebook. 15-min post-work walk.</div></div>
+    <div class="timeline-item"><div class="timeline-time">6:30 PM</div><div class="timeline-title">Personal Time / Relax</div><div class="timeline-desc">Free time. Light reading, leisure. No heavy screen use if possible.</div></div>
+    <div class="timeline-item"><div class="timeline-time">8:00 PM</div><div class="timeline-title">Dinner</div><div class="timeline-desc">High protein dinner as per plan. Eat slowly. Stop at 80% full.</div></div>
+    <div class="timeline-item"><div class="timeline-time">9:30 PM</div><div class="timeline-title">Wind Down</div><div class="timeline-desc">Dim lights. No heavy screens. 250ml warm milk (casein protein for overnight repair).</div></div>
+    <div class="timeline-item"><div class="timeline-time">10:00 PM</div><div class="timeline-title">Box Breathing (5 min)</div><div class="timeline-desc">4-4-4-4 breathing protocol in bed. Reduces cortisol. Improves sleep onset.</div></div>
+    <div class="timeline-item"><div class="timeline-time">10:30 PM</div><div class="timeline-title">Sleep Target</div><div class="timeline-desc">Aim to be asleep by 10:30–11:00 PM for 7.5 hours minimum. Room dark, cool. Same time daily.</div></div>
+  </div>
+</section>
+
+<!-- ═══════════════════ CHECKLIST ═══════════════════ -->
+<section class="section" id="checklist">
+  <div class="section-header">
+    <div class="section-num">27</div>
+    <div>
+      <div class="section-title">Daily Checklist</div>
+      <div class="section-desc">Print this or keep it in your phone. Check off daily. Track your streak.</div>
+    </div>
+  </div>
+  <div class="two-col">
+    <div>
+      <ul class="checklist do">
+        <li><div class="check"></div>Wake up at 6:00 AM</li>
+        <li><div class="check"></div>500ml water within 5 minutes of waking</li>
+        <li><div class="check"></div>Pre-workout meal eaten by 6:30 AM</li>
+        <li><div class="check"></div>Warm-up completed (12 min)</li>
+        <li><div class="check"></div>Workout logged (sets, reps, weight)</li>
+        <li><div class="check"></div>Post-workout meal within 30 min</li>
+        <li><div class="check"></div>Protein target hit (145g+)</li>
+        <li><div class="check"></div>Water target hit (3.5L+)</li>
+        <li><div class="check"></div>Cardio completed (per week's plan)</li>
+        <li><div class="check"></div>Post-workout stretching (10 min)</li>
+        <li><div class="check"></div>Lunch break walk completed</li>
+        <li><div class="check"></div>8,000 steps target</li>
+        <li><div class="check"></div>WFH movement breaks (3×10 min)</li>
+        <li><div class="check"></div>Breathing exercise (5 min)</li>
+        <li><div class="check"></div>Sleep by 10:30–11:00 PM</li>
+      </ul>
+    </div>
+    <div>
+      <div class="callout">
+        <div class="callout-title">🎯 Scoring Your Day</div>
+        <p><strong>13–15 checks:</strong> <span class="g">Perfect day — you're on track</span><br>
+        <strong>10–12 checks:</strong> <span class="go">Good day — minor gaps</span><br>
+        <strong>7–9 checks:</strong> <span class="highlight2">Average — identify what slipped</span><br>
+        <strong>Below 7:</strong> <span class="r">Review the day. What blocked you?</span><br><br>
+        Track your weekly average. Aim for 12+ per day over the week. You don't need a perfect day every day — you need a solid average over 90 days.</p>
+      </div>
+      <div class="callout orange" style="margin-top:16px">
+        <div class="callout-title">📱 Use These Free Apps</div>
+        <p><strong>Food tracking:</strong> Cronometer (free, Indian foods available)<br>
+        <strong>Workout logging:</strong> Strong App or simple notes<br>
+        <strong>Steps:</strong> Google Fit or your phone's built-in pedometer<br>
+        <strong>Progress photos:</strong> Progress (free app with comparison view)</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ FINAL ACTION PLAN ═══════════════════ -->
+<section class="section" id="final">
+  <div class="section-header">
+    <div class="section-num">28</div>
+    <div>
+      <div class="section-title">Final Action Plan</div>
+      <div class="section-desc">The most important takeaways from this entire blueprint.</div>
+    </div>
+  </div>
+
+  <div class="final-grid">
+    <div class="final-card">
+      <div class="final-card-title">✅ TOP 10 DAILY MUSTS</div>
+      <div class="final-item"><span class="n">1</span><span>Hit 145g protein — non-negotiable every single day</span></div>
+      <div class="final-item"><span class="n">2</span><span>Sleep 7.5 hrs. In bed by 10:30 PM.</span></div>
+      <div class="final-item"><span class="n">3</span><span>Eat pre-workout meal 30 min before gym</span></div>
+      <div class="final-item"><span class="n">4</span><span>Drink 3.5L water — track it</span></div>
+      <div class="final-item"><span class="n">5</span><span>Log every set, weight, and rep</span></div>
+      <div class="final-item"><span class="n">6</span><span>Post-workout meal within 30 minutes</span></div>
+      <div class="final-item"><span class="n">7</span><span>5 min breathing exercise daily</span></div>
+      <div class="final-item"><span class="n">8</span><span>3 WFH movement breaks</span></div>
+      <div class="final-item"><span class="n">9</span><span>Take weekly progress photo + measurements</span></div>
+      <div class="final-item"><span class="n">10</span><span>Complete cardio session 4–5×/week</span></div>
+    </div>
+
+    <div class="final-card">
+      <div class="final-card-title" style="color:var(--red)">❌ TOP 10 THINGS TO AVOID</div>
+      <div class="final-item"><span class="n" style="color:var(--red)">1</span><span>Sleeping less than 7 hours</span></div>
+      <div class="final-item"><span class="n" style="color:var(--red)">2</span><span>Skipping post-workout meal</span></div>
+      <div class="final-item"><span class="n" style="color:var(--red)">3</span><span>Ego lifting with bad form</span></div>
+      <div class="final-item"><span class="n" style="color:var(--red)">4</span><span>Skipping warm-up</span></div>
+      <div class="final-item"><span class="n" style="color:var(--red)">5</span><span>Sitting 8 hours without movement breaks</span></div>
+      <div class="final-item"><span class="n" style="color:var(--red)">6</span><span>Alcohol more than once a week</span></div>
+      <div class="final-item"><span class="n" style="color:var(--red)">7</span><span>Comparing progress to others on social media</span></div>
+      <div class="final-item"><span class="n" style="color:var(--red)">8</span><span>Obsessing over the scale (measure inches too)</span></div>
+      <div class="final-item"><span class="n" style="color:var(--red)">9</span><span>Changing the program every 2 weeks</span></div>
+      <div class="final-item"><span class="n" style="color:var(--red)">10</span><span>Training through sharp joint pain</span></div>
+    </div>
+
+    <div class="final-card">
+      <div class="final-card-title" style="color:var(--accent3)">🔑 KEY INSIGHTS</div>
+      <div class="final-item"><span>💡</span><span><strong>Biggest Limiting Factor:</strong> Sedentary lifestyle + poor sleep. Fix these first.</span></div>
+      <div class="final-item"><span>🫁</span><span><strong>Fastest Stamina Fix:</strong> 4×/week Zone 2 cardio (elliptical 20–25 min) + diaphragmatic breathing daily</span></div>
+      <div class="final-item"><span>💪</span><span><strong>Fastest Muscle Builder:</strong> Heavy compounds (bench, pulldowns, leg press) + progressive overload every week</span></div>
+      <div class="final-item"><span>₹</span><span><strong>Most Important Food:</strong> Soya chunks — cheapest protein per rupee, versatile, high quality</span></div>
+      <div class="final-item"><span>🏋️</span><span><strong>Most Important Exercise:</strong> Lat Pulldown / Pull-Up — builds the most back thickness and posture correction</span></div>
+      <div class="final-item"><span>😴</span><span><strong>Most Important Recovery Habit:</strong> Consistent 10:30 PM sleep time + 250ml milk before bed</span></div>
+      <div class="final-item"><span>🌱</span><span><strong>Most Important Long-Term Habit:</strong> Never miss more than 2 workouts in a row. Consistency over perfection.</span></div>
+    </div>
+  </div>
+
+  <div style="margin-top:40px;padding:40px;background:linear-gradient(135deg,rgba(232,255,71,0.06),rgba(71,200,255,0.04));border:1px solid rgba(232,255,71,0.2);border-radius:4px;text-align:center;">
+    <div style="font-family:'Bebas Neue',sans-serif;font-size:clamp(28px,4vw,48px);letter-spacing:3px;color:#fff;margin-bottom:12px;">THE ONLY PLAN THAT<br><span style="color:var(--accent)">FAILS IS THE ONE YOU DON'T FOLLOW</span></div>
+    <p style="color:var(--text-muted);font-size:14px;max-width:500px;margin:0 auto;">You have everything you need. The gym, the food, the time, the budget. The only variable is your daily commitment. Start Monday. Not next month. Not after one more cheat week. <strong style="color:#fff">Monday.</strong></p>
+    <div style="margin-top:24px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text-dim);letter-spacing:2px;">NATURAL · CONSISTENT · PATIENT · UNSTOPPABLE</div>
+  </div>
+</section>
+
+</main>
+
+<script>
+function toggleEx(header) {
+  header.classList.toggle('open');
+  const detail = header.nextElementSibling;
+  if (detail && detail.classList.contains('exercise-detail')) {
+    detail.classList.toggle('open');
+  }
+}
+
+// Active nav link on scroll
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-link');
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      navLinks.forEach(l => l.classList.remove('active'));
+      const link = document.querySelector(`.nav-link[href="#${entry.target.id}"]`);
+      if (link) link.classList.add('active');
+    }
+  });
+}, { threshold: 0.2 });
+
+sections.forEach(s => observer.observe(s));
+
+// Close sidebar on nav click (mobile)
+navLinks.forEach(link => {
+  link.addEventListener('click', () => {
+    document.getElementById('sidebar').classList.remove('open');
+  });
+});
+</script>
+</body>
+</html>
